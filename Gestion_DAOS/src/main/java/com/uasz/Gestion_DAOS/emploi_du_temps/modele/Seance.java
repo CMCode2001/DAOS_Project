@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSeance;
+    private Long idSeance;
 
     /**
      * Representation de la relation Salle-Seance

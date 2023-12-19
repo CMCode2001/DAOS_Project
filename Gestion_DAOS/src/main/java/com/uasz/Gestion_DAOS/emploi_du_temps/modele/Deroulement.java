@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Deroulement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDeroulement;
+    private Long idDeroulement;
 
     /**
      * Representation de la relation Seance-Deroulement
