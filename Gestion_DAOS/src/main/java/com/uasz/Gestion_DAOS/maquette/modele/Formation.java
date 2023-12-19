@@ -22,4 +22,18 @@ public class Formation {
     @OneToOne(mappedBy = "formation", cascade = CascadeType.ALL, orphanRemoval = true)
     private Maquette maquette;
 
+    /**
+     * Representation de la relation Formation-Niveau;
+     */
+    @ManyToOne
+    @JoinColumn(name= "niveau")
+    private Niveau niveau;
+
+    /**
+     * Representation de la relation Formation-Classe;
+     */
+    @ManyToOne
+    @JoinColumn(name="classe")
+    private Classe classe;
+
 }

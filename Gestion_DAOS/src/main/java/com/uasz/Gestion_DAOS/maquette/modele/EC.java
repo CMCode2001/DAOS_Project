@@ -23,4 +23,12 @@ public class EC {
     @ManyToOne
     @JoinColumn(name = "ue")
     private UE ue;
+
+
+    /**
+     * Representation de la relation EC-Module;
+     */
+    @ManyToOne
+    @JoinColumn(name="module")
+    private Module module;
 }

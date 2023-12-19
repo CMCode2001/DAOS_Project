@@ -42,4 +42,10 @@ public class Classe {
     @ManyToOne
     @JoinColumn(name = "semestre")
     private Semestre semestre;
+
+    /**
+     * Representation de la relation Classe-Formation;
+     */
+    @OneToMany(mappedBy = "formation")
+    private List<Formation> formations;
 }
