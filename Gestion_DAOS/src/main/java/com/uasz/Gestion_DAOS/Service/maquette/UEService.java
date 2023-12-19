@@ -1,12 +1,14 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
-import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
-import com.uasz.Gestion_DAOS.maquette.modele.UE;
-import jakarta.transaction.Transactional;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
+import com.uasz.Gestion_DAOS.maquette.modele.UE;
+
+import jakarta.transaction.Transactional;
 
 
 @Service
@@ -48,10 +50,14 @@ public class UEService {
             ueModifier.orElseThrow().setLibelleUE(ue.getLibelleUE());
             ueModifier.orElseThrow().setCodeUE(ue.getCodeUE());
             ueModifier.orElseThrow().setDescriptionUE(ue.getDescriptionUE());
-            ueRepository.save(ue);
+            return ueRepository.save(ueModifier.get());
+        }else {
+            // Gérer le cas où l'UE n'est pas trouvée
+            throw new RuntimeException("UE non trouvée avec l'ID : " + ue.getIdUE());
         }
-        return null;
+
     }
+
 
 
 }
