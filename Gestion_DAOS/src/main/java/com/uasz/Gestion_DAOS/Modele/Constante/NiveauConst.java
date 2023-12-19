@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.Constante;
+package com.uasz.Gestion_DAOS.Modele.Constante;
 
 public enum NiveauConst {
     L1,

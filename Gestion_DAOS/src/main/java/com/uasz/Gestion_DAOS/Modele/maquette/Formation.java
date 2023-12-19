@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.maquette.modele;
+package com.uasz.Gestion_DAOS.Modele.maquette;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.uasz.Gestion_DAOS.emploi_du_temps.modele;
+package com.uasz.Gestion_DAOS.Modele.emploi;
 
-import com.uasz.Gestion_DAOS.repartition.modele.Enseignant;
-import com.uasz.Gestion_DAOS.repartition.modele.Repartition;
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

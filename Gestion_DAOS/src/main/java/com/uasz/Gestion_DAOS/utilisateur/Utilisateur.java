@@ -1,6 +1,8 @@
-package com.uasz.Gestion_DAOS.maquette.modele;
+package com.uasz.Gestion_DAOS.utilisateur;
 
 import java.util.List;
+
+import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,25 +14,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Semestre{
+@Data
+public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSemestre;
-    private int numeroSemestre;
+    private Long idUtilisateur; 
+    private String nomUtilisateur;
+    private String prenomUtilisateur;
+    private String role;
 
     /**
-     * Representation de la relation classe-Semestre;
+     * Relation entre Utilisateur et UE
      */
-    @OneToMany(mappedBy = "semestre")
-    private List<Classe> classes;
-
-    /**
-     * Representation de la relation Semestre-Module;
-     */
-    @OneToMany(mappedBy = "semestre")
-    private List<Module> module;
-
+    @OneToMany(mappedBy = "utilisateur")
+    private List<UE> ues;
+    
 }
