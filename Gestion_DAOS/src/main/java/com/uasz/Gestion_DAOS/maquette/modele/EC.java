@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +25,11 @@ public class EC {
     @ManyToOne
     @JoinColumn(name = "ue")
     private UE ue;
+
+
+    /**
+     * Representation de la relation EC-Module;
+     */
+    @OneToMany(mappedBy = "ec")
+    private List<Module> modules;
 }

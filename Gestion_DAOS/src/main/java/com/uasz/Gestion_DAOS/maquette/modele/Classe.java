@@ -42,4 +42,12 @@ public class Classe {
     @ManyToOne
     @JoinColumn(name = "semestre")
     private Semestre semestre;
+
+    /**
+     * Representation de la relation Classe-Formation;
+     */
+    @ManyToOne
+    @JoinColumn(name="formation")
+    private Classe classe;
+
 }

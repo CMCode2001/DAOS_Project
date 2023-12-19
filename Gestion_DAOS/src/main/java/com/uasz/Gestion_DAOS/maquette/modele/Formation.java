@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,5 +23,19 @@ public class Formation {
      */
     @OneToOne(mappedBy = "formation", cascade = CascadeType.ALL, orphanRemoval = true)
     private Maquette maquette;
+
+    /**
+     * Representation de la relation Formation-Niveau;
+     */
+    @ManyToOne
+    @JoinColumn(name= "niveau")
+    private Niveau niveau;
+
+    /**
+     * Representation de la relation Formation-Classe;
+     */
+
+    @OneToMany(mappedBy = "formation")
+    private List<Classe> classes;
 
 }
