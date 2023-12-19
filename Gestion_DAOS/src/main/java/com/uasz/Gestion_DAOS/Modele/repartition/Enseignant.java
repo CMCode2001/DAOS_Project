@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.repartition.modele;
+package com.uasz.Gestion_DAOS.Modele.repartition;
 
 import java.util.List;
 

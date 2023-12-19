@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.maquette.modele;
+package com.uasz.Gestion_DAOS.Modele.maquette;
 
 import java.util.List;
 
@@ -48,8 +48,8 @@ public class Module {
     @JoinColumn(name = "ue")
     private Module module;
 
-    /* 
-    * Representation de la relation Module-EC;
+    /**
+     * Representation de la relation Module-EC;
      */
     @ManyToOne
     @JoinColumn(name="ec")

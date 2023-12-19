@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.maquette.modele;
+package com.uasz.Gestion_DAOS.Modele.maquette;
 
 import java.util.List;
 
@@ -14,28 +14,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Groupe {
+@Data
+public class EC {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idGroupe;
-    private int NomGroupe;
-    private int effectifGroupe;
-
+    private Long idEC;
+    private String libelleEC;
+    private  String codeEC;
+    private String descriptionEC;
 
     /**
-     * Representation de la relation classe-Groupe;
+     * Representation de la relation entre EC-UE
      */
     @ManyToOne
-    @JoinColumn(name = "classe")
-    private Classe classe;  
+    @JoinColumn(name = "ue")
+    private UE ue;
+
 
     /**
-     * Representation de la relation Groupe-Enseignement;
+     * Representation de la relation EC-Module;
      */
-    @OneToMany(mappedBy = "groupe")
-    private List<Enseignement> enseignements;
-    
+    @OneToMany(mappedBy = "ec")
+    private List<Module> modules;
 }

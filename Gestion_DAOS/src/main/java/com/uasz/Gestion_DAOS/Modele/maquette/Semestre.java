@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.maquette.modele;
+package com.uasz.Gestion_DAOS.Modele.maquette;
 
 import java.util.List;
 
@@ -15,15 +15,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Filiere {
-    @Id 
+public class Semestre{
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFiliere;
-    private String nomFiliere;
+    private Long idSemestre;
+    private int numeroSemestre;
 
     /**
-     * Representation de la relation Filiere-Formation;
+     * Representation de la relation classe-Semestre;
      */
-    @OneToMany(mappedBy = "filiere")
-    private List<Formation> formations;
+    @OneToMany(mappedBy = "semestre")
+    private List<Classe> classes;
+
+    /**
+     * Representation de la relation Semestre-Module;
+     */
+    @OneToMany(mappedBy = "semestre")
+    private List<Module> module;
+
 }

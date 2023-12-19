@@ -1,9 +1,9 @@
-package com.uasz.Gestion_DAOS.emploi_du_temps.modele;
+package com.uasz.Gestion_DAOS.Modele.emploi;
 
 import java.sql.Date;
 import java.util.List;
 
-import com.uasz.Gestion_DAOS.Constante.Jour;
+import com.uasz.Gestion_DAOS.Modele.Constante.Jour;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
