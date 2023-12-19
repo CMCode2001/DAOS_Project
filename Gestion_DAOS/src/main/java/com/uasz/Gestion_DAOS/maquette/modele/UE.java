@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.maquette.modele;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

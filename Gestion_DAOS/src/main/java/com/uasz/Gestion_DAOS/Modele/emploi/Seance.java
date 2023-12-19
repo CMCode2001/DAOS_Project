@@ -1,4 +1,6 @@
-package com.uasz.Gestion_DAOS.emploi_du_temps.modele;
+package com.uasz.Gestion_DAOS.Modele.emploi;
+
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,4 +41,8 @@ public class Seance {
     @ManyToOne
     @JoinColumn(name = "emploi", nullable = false)
     private Emploi emploi;
+
+    @ManyToOne
+    @JoinColumn(name = "repartition")
+    private Repartition repartition;
 }

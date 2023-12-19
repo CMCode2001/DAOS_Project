@@ -1,6 +1,14 @@
-package com.uasz.Gestion_DAOS.maquette.modele;
+package com.uasz.Gestion_DAOS.Modele.maquette;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,5 +31,11 @@ public class Maquette {
     @OneToOne
     @JoinColumn(name = "formation")
     private Formation formation;
+
+    /**
+     * Representation de la relation Maquette-module;
+     */
+    @OneToMany(mappedBy = "maquette")
+    private List<Module> modules;
 
 }

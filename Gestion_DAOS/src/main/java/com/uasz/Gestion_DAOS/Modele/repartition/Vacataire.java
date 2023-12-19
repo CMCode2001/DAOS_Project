@@ -1,6 +1,5 @@
-package com.uasz.Gestion_DAOS.repartition.modele;
+package com.uasz.Gestion_DAOS.Modele.repartition;
 
-import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;

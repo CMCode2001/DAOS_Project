@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.emploi_du_temps.modele;
+package com.uasz.Gestion_DAOS.Modele.emploi;
 
 import java.util.List;
 

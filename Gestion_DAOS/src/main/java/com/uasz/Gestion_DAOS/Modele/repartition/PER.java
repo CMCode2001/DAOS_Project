@@ -1,4 +1,4 @@
-package com.uasz.Gestion_DAOS.repartition.modele;
+package com.uasz.Gestion_DAOS.Modele.repartition;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor 
+@AllArgsConstructor
 @DiscriminatorValue("PER")
 public class PER extends Enseignant {
     private String matricule;

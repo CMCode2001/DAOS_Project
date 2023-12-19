@@ -1,28 +1,29 @@
-package com.uasz.Gestion_DAOS.emploi_du_temps.modele;
+package com.uasz.Gestion_DAOS.Modele.maquette;
+
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Deroulement {
-    @Id
+public class Filiere {
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDeroulement;
+    private Long idFiliere;
+    private String nomFiliere;
 
     /**
-     * Representation de la relation Seance-Deroulement
+     * Representation de la relation Filiere-Formation;
      */
-    @OneToOne
-    @JoinColumn(name = "seance")
-    private Seance seance;
+    @OneToMany(mappedBy = "filiere")
+    private List<Formation> formations;
 }
