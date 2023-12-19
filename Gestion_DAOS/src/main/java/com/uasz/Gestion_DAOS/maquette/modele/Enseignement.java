@@ -1,14 +1,12 @@
 package com.uasz.Gestion_DAOS.maquette.modele;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.uasz.Gestion_DAOS.repartition.modele.Repartition;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -33,5 +31,14 @@ public class Enseignement {
     @JoinColumn(name = "groupe")
     private Groupe groupe;
 
+    /**
+     * Representation de la relation Module-Enseignement;
+     */
+    @ManyToOne
+    @JoinColumn(name = "module")
+    private Module module;
+
+    @OneToMany(mappedBy = "enseignement", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Repartition> repartitions;
 
 }

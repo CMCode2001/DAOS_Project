@@ -22,4 +22,10 @@ public class Formation {
     @OneToOne(mappedBy = "formation", cascade = CascadeType.ALL, orphanRemoval = true)
     private Maquette maquette;
 
+    /**
+     * Representation de la relation Filiere-Formation;
+     */
+    @ManyToOne
+    @JoinColumn(name = "filiere")
+    private Filiere filiere;
 }
