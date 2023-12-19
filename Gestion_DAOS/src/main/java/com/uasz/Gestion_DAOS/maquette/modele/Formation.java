@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -32,8 +34,8 @@ public class Formation {
     /**
      * Representation de la relation Formation-Classe;
      */
-    @ManyToOne
-    @JoinColumn(name="classe")
-    private Classe classe;
+
+    @OneToMany(mappedBy = "formation")
+    private List<Classe> classes;
 
 }

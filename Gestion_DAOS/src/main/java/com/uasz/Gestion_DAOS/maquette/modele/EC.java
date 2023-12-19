@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +30,6 @@ public class EC {
     /**
      * Representation de la relation EC-Module;
      */
-    @ManyToOne
-    @JoinColumn(name="module")
-    private Module module;
+    @OneToMany(mappedBy = "ec")
+    private List<Module> modules;
 }

@@ -31,6 +31,6 @@ public class Niveau {
     /**
      * Representation de la relation Niveau-Formation;
      */
-    @OneToMany(mappedBy = "formation")
+    @OneToMany(mappedBy = "niveau")
     private List <Formation> formations;
 }

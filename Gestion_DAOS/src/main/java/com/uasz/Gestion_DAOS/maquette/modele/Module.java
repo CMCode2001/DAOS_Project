@@ -18,6 +18,8 @@ public class Module {
     /**
      * Representation de la relation Module-EC;
      */
-    @OneToMany(mappedBy = "EC")
-    private List <EC> ec;
+    @ManyToOne
+    @JoinColumn(name="ec")
+    private EC ec;
+
 }

@@ -46,6 +46,8 @@ public class Classe {
     /**
      * Representation de la relation Classe-Formation;
      */
-    @OneToMany(mappedBy = "formation")
-    private List<Formation> formations;
+    @ManyToOne
+    @JoinColumn(name="formation")
+    private Classe classe;
+
 }
