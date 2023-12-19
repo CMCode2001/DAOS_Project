@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Emploi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEmploi;
+    private Long idEmploi;
     private Jour jour;
     private int horaireDebut;
     private int horaireFin;

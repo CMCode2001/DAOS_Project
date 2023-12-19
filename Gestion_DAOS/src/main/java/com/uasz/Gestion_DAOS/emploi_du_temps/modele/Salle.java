@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSalle;
+    private Long idSalle;
     private int numeroSalle;
     private int CapaciteSalle;
     private String typeSalle;

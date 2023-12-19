@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Batiment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idBatiment;
+    private Long idBatiment;
     private String nomBatiment;
     private String Nb_Etage;
     private Year   anneeBatiment;
