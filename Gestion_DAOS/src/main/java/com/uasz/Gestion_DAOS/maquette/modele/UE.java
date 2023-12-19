@@ -24,4 +24,10 @@ public class UE {
      */
     @OneToMany(mappedBy = "ue")
     private List<EC> ecs;
+
+    /**
+     * Representation de la relation UE-module;
+     */
+    @OneToMany(mappedBy = "ue")
+    private List<Module> modules;
 }

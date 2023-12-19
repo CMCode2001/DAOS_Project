@@ -27,4 +27,10 @@ public class Semestre{
     @OneToMany(mappedBy = "semestre")
     private List<Classe> classes;
 
+    /**
+     * Representation de la relation Semestre-Module;
+     */
+    @OneToMany(mappedBy = "semestre")
+    private List<Module> module;
+
 }

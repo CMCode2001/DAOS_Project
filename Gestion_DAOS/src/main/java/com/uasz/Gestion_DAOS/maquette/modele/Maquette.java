@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -23,5 +25,11 @@ public class Maquette {
     @OneToOne
     @JoinColumn(name = "formation")
     private Formation formation;
+
+    /**
+     * Representation de la relation Maquette-module;
+     */
+    @OneToMany(mappedBy = "maquette")
+    private List<Module> modules;
 
 }
