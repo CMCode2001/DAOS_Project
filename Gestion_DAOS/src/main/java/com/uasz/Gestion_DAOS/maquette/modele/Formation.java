@@ -1,6 +1,16 @@
 package com.uasz.Gestion_DAOS.maquette.modele;
 
-import jakarta.persistence.*;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +33,23 @@ public class Formation {
     private Maquette maquette;
 
     /**
-     * Representation de la relation Filiere-Formation;
-     */
+    * Representation de la relation Filiere-Formation;
+    */
     @ManyToOne
     @JoinColumn(name = "filiere")
     private Filiere filiere;
+    /** 
+    * Representation de la relation Formation-Niveau;
+    */
+    @ManyToOne
+    @JoinColumn(name= "niveau")
+    private Niveau niveau;
+
+    /**
+     * Representation de la relation Formation-Classe;
+     */
+
+    @OneToMany(mappedBy = "formation")
+    private List<Classe> classes;
+
 }
