@@ -27,3 +27,4 @@ public class UE {
     @OneToMany(mappedBy = "ue")
     private List<EC> ecs;
 }
+ 
