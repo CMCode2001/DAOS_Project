@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.maquette;
 
+
 import java.sql.Date;
 import java.util.List;
 
@@ -12,16 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Setter
 public class UE {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,4 +48,5 @@ public class UE {
     @ManyToOne
     @JoinColumn(name = "utilisateur")
     private Utilisateur utilisateur;
+
 }
