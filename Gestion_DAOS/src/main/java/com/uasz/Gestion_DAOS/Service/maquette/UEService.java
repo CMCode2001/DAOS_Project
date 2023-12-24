@@ -1,9 +1,11 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+
 import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,9 @@ public class UEService {
      * @return UE
      */
     public UE ajouterUE(UE ue){
-        ueRepository.save(ue);
-        return  ue;
+        UE savedUE = ueRepository.save(ue);
+        savedUE.setDateCreation(new Date(System.currentTimeMillis()));
+        return  savedUE;
     }
 
     /**
@@ -57,6 +60,9 @@ public class UEService {
             ueModifier.orElseThrow().setLibelleUE(ue.getLibelleUE());
             ueModifier.orElseThrow().setCodeUE(ue.getCodeUE());
             ueModifier.orElseThrow().setDescriptionUE(ue.getDescriptionUE());
+            ueModifier.orElseThrow().setCoefficientUE(ue.getCoefficientUE());
+            ueModifier.orElseThrow().setCreditUE(ue.getCreditUE());
+            ueModifier.orElseThrow().setCreditUE(ue.getCreditUE());
             return ueRepository.save(ueModifier.get());
         }
         else{

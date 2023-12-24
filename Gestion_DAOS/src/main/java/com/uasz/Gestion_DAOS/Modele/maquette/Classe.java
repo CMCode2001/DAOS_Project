@@ -48,6 +48,6 @@ public class Classe {
      */
     @ManyToOne
     @JoinColumn(name="formation")
-    private Classe classe;
+    private Formation formation;
 
 }
