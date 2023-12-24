@@ -46,7 +46,7 @@ public class Module {
      */
     @ManyToOne
     @JoinColumn(name = "ue")
-    private Module module;
+    private UE ue;
 
     /**
      * Representation de la relation Module-EC;

@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.maquette;
 
+
 import java.sql.Date;
 import java.util.List;
 
@@ -47,4 +48,5 @@ public class UE {
     @ManyToOne
     @JoinColumn(name = "utilisateur")
     private Utilisateur utilisateur;
+
 }

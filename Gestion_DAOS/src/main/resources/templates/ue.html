@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> PAGE UE</title>
+    <style>
+        /* Reset some default browser styles */
+        body, h1, h2, table {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        form {
+            margin-bottom: 20px;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            margin-right: 10px;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Add more styles as needed */
+
+    </style>
+</head>
+<body>
+<form th:action="@{/ajouter_ue}" method="post">
+    <div>
+        <label for="codeUE">Code</label>
+        <input type="text" class="form-control" id="codeUE" name="codeUE" required />
+    </div>
+
+    <div>
+        <label for="libelleUE">Libelle</label>
+        <input type="text" class="form-control" id="libelleUE" name="libelleUE" required />
+    </div>
+
+    <div>
+        <label for="creditUE">Credits</label>
+        <input type="text" class="form-control" id="creditUE" name="creditUE" required />
+    </div>
+
+    <div>
+        <label for="coefficientUE">Coefficient</label>
+        <input type="text" class="form-control" id="coefficientUE" name="coefficientUE" required />
+    </div>
+    <button type="submit">Ajouter UE</button>
+</form>
+<h2> Liste des UE</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>Libelle</th>
+            <th>Credits</th>
+            <th>Coefficients</th>
+            <th colspan="2">Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each ="e:${listeDesUE}">
+        <td th:text="${e.idUE}"></td>
+        <td th:text="${e.codeUE}"></td>
+        <td th:text="${e.libelleUE}"></td>
+        <td th:text="${e.creditUE}"></td>
+        <td th:text="${e.coefficientUE}"></td>
+        <td>
+            <a th:href="@{/rechercher_id_modifier(id=${e.idUE})}">Modifier</a>
+            <a th:href="@{/rechercher_id_supprimer(id=${e.idUE})}">Supprimer</a>
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
