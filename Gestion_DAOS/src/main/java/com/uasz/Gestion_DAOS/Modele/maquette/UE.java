@@ -1,7 +1,7 @@
 package com.uasz.Gestion_DAOS.Modele.maquette;
 
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.uasz.Gestion_DAOS.utilisateur.Utilisateur;
@@ -13,7 +13,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.*;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
@@ -25,9 +29,9 @@ public class UE {
     private Long idUE;
     private String libelleUE;
     private  String codeUE;
-    private String descriptionUE;
     private int creditUE;
     private int coefficientUE;
+    @Temporal(TemporalType.DATE)
     private Date dateCreation;
 
     /**

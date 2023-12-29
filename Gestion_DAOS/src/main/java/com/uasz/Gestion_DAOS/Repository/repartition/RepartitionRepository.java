@@ -1,4 +1,8 @@
 package com.uasz.Gestion_DAOS.Repository.repartition;
 
-public interface RepartitionRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
+
+public interface RepartitionRepository extends JpaRepository<Repartition, Long>{
 }

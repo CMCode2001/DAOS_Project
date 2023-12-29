@@ -1,14 +1,16 @@
 package com.uasz.Gestion_DAOS;
 
-import com.uasz.Gestion_DAOS.Modele.maquette.UE;
-import com.uasz.Gestion_DAOS.Service.maquette.UEService;
-import lombok.extern.slf4j.Slf4j;
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.sql.Date;
+import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+import com.uasz.Gestion_DAOS.Service.maquette.UEService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
 @Slf4j
@@ -39,7 +41,6 @@ public class GestionDaosApplication implements CommandLineRunner {
 				null,
 				"Reseaux & Telecoms",
 				"INF351",
-				"Description de l'UE1",
 				3,
 				2,
 				new Date(System.currentTimeMillis()),
@@ -51,7 +52,6 @@ public class GestionDaosApplication implements CommandLineRunner {
 				null,
 				"Genies Logicielles",
 				"INF351",
-				"Description de l'UE1",
 				3,
 				2,
 				new Date(System.currentTimeMillis()),
@@ -63,7 +63,6 @@ public class GestionDaosApplication implements CommandLineRunner {
 				null,
 				"Administration Systeme",
 				"INF342",
-				"Description de l'UE1",
 				3,
 				2,
 				new Date(System.currentTimeMillis()),
@@ -75,7 +74,7 @@ public class GestionDaosApplication implements CommandLineRunner {
 				null,
 				"Anglais",
 				"INF351",
-				"Description de l'UE1",
+				
 				3,
 				2,
 				new Date(System.currentTimeMillis()),
@@ -87,7 +86,6 @@ public class GestionDaosApplication implements CommandLineRunner {
 				null,
 				"Base de donnees",
 				"INF351",
-				"Description de l'UE1",
 				3,
 				2,
 				new Date(System.currentTimeMillis()),
