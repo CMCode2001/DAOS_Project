@@ -1,4 +1,8 @@
 package com.uasz.Gestion_DAOS.Repository.maquette;
 
-public interface GroupeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.uasz.Gestion_DAOS.Modele.maquette.Groupe;
+
+public interface GroupeRepository extends JpaRepository<Groupe, Long> {
 }

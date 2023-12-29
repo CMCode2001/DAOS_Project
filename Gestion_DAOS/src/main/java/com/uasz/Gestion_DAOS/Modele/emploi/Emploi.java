@@ -1,6 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.emploi;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.uasz.Gestion_DAOS.Modele.Constante.Jour;
@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,9 @@ public class Emploi {
     private Jour jour;
     private int horaireDebut;
     private int horaireFin;
+    @Temporal(TemporalType.DATE)
     private Date dateDebut;
+    @Temporal(TemporalType.DATE)
     private Date dateFin;
     
     /**

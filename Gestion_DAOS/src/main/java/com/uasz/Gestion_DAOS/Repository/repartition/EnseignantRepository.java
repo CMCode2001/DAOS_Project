@@ -1,4 +1,8 @@
 package com.uasz.Gestion_DAOS.Repository.repartition;
 
-public interface EnseignantRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.uasz.Gestion_DAOS.Modele.repartition.Enseignant;
+
+public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
 }

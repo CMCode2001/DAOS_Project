@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.uasz.Gestion_DAOS.Modele.maquette.UE;
-
-import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
+
 import jakarta.transaction.Transactional;
+import lombok.Data;
 
 
 @Service
@@ -59,7 +59,6 @@ public class UEService {
         if(ueModifier.isPresent()) {
             ueModifier.orElseThrow().setLibelleUE(ue.getLibelleUE());
             ueModifier.orElseThrow().setCodeUE(ue.getCodeUE());
-            ueModifier.orElseThrow().setDescriptionUE(ue.getDescriptionUE());
             ueModifier.orElseThrow().setCoefficientUE(ue.getCoefficientUE());
             ueModifier.orElseThrow().setCreditUE(ue.getCreditUE());
             ueModifier.orElseThrow().setCreditUE(ue.getCreditUE());
