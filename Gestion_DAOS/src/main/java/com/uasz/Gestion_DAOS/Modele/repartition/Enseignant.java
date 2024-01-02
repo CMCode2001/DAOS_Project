@@ -23,10 +23,10 @@ import lombok.NoArgsConstructor;
 @DiscriminatorColumn(name="type", length=3)
 public class Enseignant {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    private String nom;
-    private String prenom;
-    private String grade;
+    private Long idEns;
+    private String nomEns;
+    private String prenomEns;
+    private String gradeEns;
 
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Repartition> repartitions;

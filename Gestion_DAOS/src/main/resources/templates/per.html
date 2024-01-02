@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page des PER</title>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Les Enseigants de grade: PER</h2>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Matricule</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Grade</th>
+                    <th colspan="2">Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each ="e:${listeDesPERS}">
+                    <td th:text="${e.matriculePer}"></td>
+                    <td th:text="${e.nomEns}"></td>
+                    <td th:text="${e.prenomEns}"></td>
+                    <td th:text="${e.gradeEns}"></td>
+
+                    <td>
+                        <a th:href="@{/rechercher_id_modifier(id=${e.matriculePer})}">Modifier</a>
+                        <a th:href="@{/delete/{id}(id=${e.matriculePer})}" method="delete">Delete</a>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

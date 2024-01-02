@@ -35,9 +35,9 @@ public class UEController {
        ueService.ajouterUE(ue);
        return "redirect:/ue";
    }
-
-
-
-
-
+@GetMapping (value="/deleteUE/{id}")
+   public String deleteUE (@PathVariable Long id){
+       ueService.deleteUE(id);
+       return "redirect:/ue";
+   }
 }
