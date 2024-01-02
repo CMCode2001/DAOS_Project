@@ -80,7 +80,7 @@ public class UEService {
         if (deletedUE.isPresent()){
             ueRepository.delete(deletedUE.get());
         }else {
-            new RuntimeException("UE introuvable !!!");
+            throw new RuntimeException("UE introuvable !!!");
         }
 
     }
