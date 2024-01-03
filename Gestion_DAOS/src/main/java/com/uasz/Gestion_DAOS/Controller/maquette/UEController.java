@@ -32,7 +32,7 @@ public class UEController {
     @GetMapping("/supprimer")
     public String supprimerUnUE(Long id){
         ueService.supprimerUE(ueService.rechercherUE(id).get());
-        return "redirect:/ue";   
+        return "redirect:/ue";
     }
 
     @PostMapping(value = "/ajouter_ue")
@@ -40,12 +40,19 @@ public class UEController {
         ueService.ajouterUE(ue);
         return "redirect:/ue";
     }
+
+
+    @PostMapping(value = "/modifier_ue")
+    public String modifier_ue(Long id){
+        ueService.modifierUE(ueService.rechercherUE(id).get());
+
     
 
     @GetMapping("/modifier_ue")
     public String modifier(Long id, Model model) {
         UE ue = ueService.modifierUE(ueService.rechercherUE(id).get()); 
         model.addAttribute("ue", ue);
+
         return "redirect:/ue";
     }
 
