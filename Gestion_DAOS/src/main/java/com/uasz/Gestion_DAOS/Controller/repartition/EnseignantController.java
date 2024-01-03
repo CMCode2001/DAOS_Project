@@ -20,7 +20,7 @@ public class EnseignantController {
     @Autowired
     private EnseignantService enseignantService;
 
-    @RequestMapping(value = "/enseignants", method = RequestMethod.GET)
+    @RequestMapping(value = "/enseignant", method = RequestMethod.GET)
     public String listerEnseignant(Model model){
         List<Enseignant> enseignantList = enseignantService.listerToutEnseignant();
         model.addAttribute("listeDesEnseignants", enseignantList);

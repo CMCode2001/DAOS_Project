@@ -67,7 +67,7 @@ public class PerService {
     /**
      * Methode permettant de supprimer un PER;
      *
-     * @param od
+     * @param id
      * @return
      */
     public void deletePer(Long id){

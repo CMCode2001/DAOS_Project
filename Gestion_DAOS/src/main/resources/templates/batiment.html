@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
+    <title>Page des PER</title>
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-header d-flex justify-content-sm-between"
+                 style="color:#fff;
+                    background:rgb(15, 16, 69)"
+            >
+                <h3 style="margin-top: 10px;"> Liste des Enseignants PER</h3>
+                <!-- Button trigger modal -->
+                <a type="button"
+                   class="btn"
+                   data-bs-toggle="modal"
+                   data-bs-target="#addModal"
+                   style="color:#fff">
+                    <i class="bi bi-plus-square-fill"
+                       style="
+                        font-size: 2.5rem;
+                        "
+                    ></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>IdBat</th>
+                        <th>NomBat </th>
+                        <th>Nb_Etage</th>
+                        <th>AnneeBat</th>
+                        <th>typeBatiment</th>
+                        <th colspan="2">Operations</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each ="e:${listeDesBatiments}">
+                        <td th:text="${e.idBatiment}"></td>
+                        <td th:text="${e.nomBatiment}"></td>
+                        <td th:text="${e.nb_Etage}"></td>
+                        <td th:text="${e.anneeBatiment}"></td>
+                        <td th:text="${e.typeBatiment}"></td>
+                        <td>
+                            <a onclick="return confirm('Voulez-vous supprimer?')"
+                               th:href="@{/deleteBat/{id}(id=${e.idBatiment})}" class="btn">
+                                <i class="bi bi-trash-fill"
+                                   style="
+                                        font-size: 22px;
+                                        color:red"
+                                ></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                    th:href="@{/modifierBat(id=${e.idBatiment})}"
+                                    class="btn"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#addModal"
+                            >
+                                <i class="bi bi-pen-fill"
+                                   style="
+                                        font-size: 22px;
+                                        color: rgb(24, 95, 47)"
+                                ></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal  for adding -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addModalLabel">Ajouter un nouveau Batiment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/ajouter_batiment}" method="post">
+                        <div >
+                            <label for="codeUE">NomBat</label>
+                            <input type="text" class="form-control" id="codeUE" name="codeUE" required />
+                        </div>
+
+                        <div>
+                            <label for="libelleUE">Nb_Etage</label>
+                            <input type="text" class="form-control" id="libelleUE" name="libelleUE" required />
+                        </div>
+
+                        <div>
+                            <label for="creditUE">AnneeBat</label>
+                            <input type="text" class="form-control" id="creditUE" name="creditUE" required />
+                        </div>
+
+                        <div>
+                            <label for="coefficientUE">TypeBat</label>
+                            <input type="text" class="form-control" id="coefficientUE" name="coefficientUE" required />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-outline-success mt-2" type="submit">Ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for updating -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="updateModalLabel">Modifier un Batiment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

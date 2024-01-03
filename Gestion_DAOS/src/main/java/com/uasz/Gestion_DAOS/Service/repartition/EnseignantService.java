@@ -49,21 +49,21 @@ public class EnseignantService {
      * @param enseignant
      * @return {@Code Enseignant} la nouvelle Enseignant modifier ou, {@code new RuntimeException()} si l'Enseignant n'existe pas
      */
-    public Enseignant modifierEns(Enseignant enseignant){
-        Optional<Enseignant> ensModif = searchEnseignant(enseignant.getIdEns());
-        if(ensModif.isPresent()) {
-            ensModif.orElseThrow().setIdEns(enseignant.getIdEns());
-            ensModif.orElseThrow().setNomEns(enseignant.getNomEns());
-            ensModif.orElseThrow().setPrenomEns(enseignant.getPrenomEns());
-            ensModif.orElseThrow().setGradeEns(enseignant.getGradeEns());
-            return enseignantRepository.save(ensModif.get());
-        }
-        else{
-            // Gérer le cas où l'Enseignant n'est pas trouvée
-            throw new RuntimeException("Enseignant non trouvée avec l'ID : " + enseignant.getIdEns());
-        }
-
-    }
+//    public Enseignant modifierEns(Enseignant enseignant){
+//        Optional<Enseignant> ensModif = searchEnseignant(enseignant.getIdEns());
+//        if(ensModif.isPresent()) {
+//            ensModif.orElseThrow().setIdEns(enseignant.getIdEns());
+//            ensModif.orElseThrow().setNomEns(enseignant.getNomEns());
+//            ensModif.orElseThrow().setPrenomEns(enseignant.getPrenomEns());
+//            ensModif.orElseThrow().setGradeEns(enseignant.getGradeEns());
+//            return enseignantRepository.save(ensModif.get());
+//        }
+//        else{
+//            // Gérer le cas où l'Enseignant n'est pas trouvée
+//            throw new RuntimeException("Enseignant non trouvée avec l'ID : " + enseignant.getIdEns());
+//        }
+//
+//    }
     /**
      * Methode permettant de supprimer un Enseignant;
      *
