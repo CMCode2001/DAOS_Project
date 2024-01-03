@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @DiscriminatorValue("PER")
 public class PER extends Enseignant {
-    private String matricule;
+    private String matriculePer;
 }

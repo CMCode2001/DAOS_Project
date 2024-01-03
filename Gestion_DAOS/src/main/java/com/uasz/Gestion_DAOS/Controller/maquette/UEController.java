@@ -28,6 +28,7 @@ public class UEController {
         return  "ue";
     }
 
+
     @PostMapping(value = "/ajouter_ue")
     public String ajouter_ue(Model model, UE ue){
         ueService.ajouterUE(ue);
