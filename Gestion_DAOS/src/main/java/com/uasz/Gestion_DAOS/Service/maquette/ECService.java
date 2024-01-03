@@ -30,15 +30,15 @@ public class ECService {
         return ecRepository.findById(idEC).get();
     }
 
-    public EC modifierEC(EC ec){
-        EC ecModifier = rechercherEc(ec.getIdEC());
-        ecModifier.setCodeEC(ec.getCodeEC());
-        ecModifier.setLibelleEC(ec.getLibelleEC());
+    public EC modifierEC(EC newEC, Long id){
+        EC ecModifier = rechercherEc(id);
+        ecModifier.setCodeEC(newEC.getCodeEC());
+        ecModifier.setLibelleEC(newEC.getLibelleEC());
 
         return ecRepository.save(ecModifier);
     }
     
     public void supprimerEC(Long idEC){
-        ecRepository.delete(rechercherEc(idEC));
+        ecRepository.deleteById(idEC);
     }
 }

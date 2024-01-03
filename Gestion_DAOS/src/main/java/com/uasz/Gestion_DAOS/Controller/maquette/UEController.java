@@ -7,9 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
-import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
 import com.uasz.Gestion_DAOS.Service.maquette.UEService;
 
 import lombok.AllArgsConstructor;
@@ -19,8 +20,6 @@ import lombok.AllArgsConstructor;
 public class UEController {
     @Autowired
     private UEService ueService;
-    @Autowired
-    private UERepository ueRepository;
 
     @GetMapping("/ue")
     public String lister_ue(Model model){
@@ -29,33 +28,30 @@ public class UEController {
         return  "ue";
     }
 
-    @GetMapping("/supprimer")
-    public String supprimerUnUE(Long id){
-        ueService.supprimerUE(ueService.rechercherUE(id).get());
-        return "redirect:/ue";   
-    }
-
     @PostMapping(value = "/ajouter_ue")
     public String ajouter_ue(Model model, UE ue){
         ueService.ajouterUE(ue);
         return "redirect:/ue";
     }
-    
 
-    @GetMapping("/modifier_ue")
-    public String modifier(Long id, Model model) {
-        UE ue = ueService.modifierUE(ueService.rechercherUE(id).get()); 
+    @PostMapping("/modifier_ue")
+    public String modifier_ue(UE ue, Model model) {
+        ueService.modifierUE(ue); 
+        return "redirect:/ue";
+    }
+
+    @PostMapping("/supprimer_ue")
+    public String supprimer_ue(UE ue, Model model){
+        ueService.supprimerUE(ue);
+        return "redirect:/ue";   
+    }
+
+    @GetMapping("/details_ue")
+    public String details_ue(Model model, @RequestParam("id") Long id){
+        UE ue = ueService.rechercherUE(id);
+        List<EC> ecList = ueService.afficherLesECs(ue);
         model.addAttribute("ue", ue);
-        return "redirect:/ue";
+        model.addAttribute("listeDesECs", ecList);
+        return "ue_details";
     }
-
-    @PostMapping("/editer")
-    public String editer(Model model, UE ue){
-        
-        return "redirect:/ue";
-    }
-    
-
-
-
 }

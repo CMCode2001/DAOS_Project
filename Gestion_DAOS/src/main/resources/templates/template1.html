@@ -30,8 +30,19 @@
                 UE
                 </a>
             </li>
+            <li class="nav-item dropdown">
+                <a th:href="@{/ec}" class="nav-link dropdown-toggle " role="button"  aria-expanded="false">
+                EC
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" th:href="@{/formEC}">New item</a>
+                    </li>
+
+                </ul>
+            </li>
             <li class="nav-item">
-                <a th:href="@{/enseignant}" class="nav-link " role="button"  aria-expanded="false">
+                <a th:href="@{/enseignant}" class="nav-link  " role="button"  aria-expanded="false">
                     Enseignants
                 </a>
             </li>
