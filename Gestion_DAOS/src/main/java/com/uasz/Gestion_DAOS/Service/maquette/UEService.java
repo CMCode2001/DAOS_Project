@@ -2,11 +2,11 @@ package com.uasz.Gestion_DAOS.Service.maquette;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
 
@@ -21,70 +21,39 @@ public class UEService {
     @Autowired
     private UERepository ueRepository;
 
-    /**
-     *  Methode ajouter d'un Unite d'enseignement(UE)
-     * @param ue
-     * @return UE
-     */
-    public UE ajouterUE(UE ue){
+    public void ajouterUE(UE ue){
         UE savedUE = ueRepository.save(ue);
         savedUE.setDateCreation(new Date(System.currentTimeMillis()));
-        return  savedUE;
+        ueRepository.save(savedUE);
     }
 
-    /**
-     * Methode permettant de lister tous les UE
-     * @return {@code List<UE>}
-     */
     public List<UE> listerToutUE(){
         return ueRepository.findAll();
     }
 
-    /**
-     * Methode permettant de trouver un UE de par son ID
-     * @param idUE
-     * @return {@code Optional} contenant l'UE trouve, ou {@code Optional.empty()} si aucun UE est trouve;
-     */
-    public Optional<UE> rechercherUE(Long idUE){
-        return ueRepository.findById(idUE);
+    public UE rechercherUE(Long idUE){
+        return ueRepository.findById(idUE).get();
     }
 
-    /**
-     * Methode permettant de modifier un UE
-     * @param ue
-     * @return {@Code UE} la nouvelle UE modifier ou, {@code new RuntimeException()} si l'UE n'existe pas
-     */
     public UE modifierUE(UE ue){
-        Optional<UE> ueModifier = rechercherUE(ue.getIdUE());
-        if(ueModifier.isPresent()) {
-            ueModifier.orElseThrow().setLibelleUE(ue.getLibelleUE());
-            ueModifier.orElseThrow().setCodeUE(ue.getCodeUE());
-            ueModifier.orElseThrow().setCoefficientUE(ue.getCoefficientUE());
-            ueModifier.orElseThrow().setCreditUE(ue.getCreditUE());
-            ueModifier.orElseThrow().setCreditUE(ue.getCreditUE());
-            return ueRepository.save(ueModifier.get());
-        }
-        else{
-            // Gérer le cas où l'UE n'est pas trouvée
-            throw new RuntimeException("UE non trouvée avec l'ID : " + ue.getIdUE());
-        }
-
+        UE ueModifier = rechercherUE(ue.getIdUE());
+        ueModifier.setLibelleUE(ue.getLibelleUE());
+        ueModifier.setCodeUE(ue.getCodeUE());
+        ueModifier.setCoefficientUE(ue.getCoefficientUE());
+        ueModifier.setCreditUE(ue.getCreditUE());
+        ueModifier.setCreditUE(ue.getCreditUE());
+        ueModifier.setDescriptionUE(ue.getDescriptionUE());
+        return ueRepository.save(ueModifier);
     }
 
-    /**
-     * Methode permettant de supprimer un UE;
-     * @param ue
-     */
     public void supprimerUE(UE ue){
-        Optional<UE> deletedUE = rechercherUE(ue.getIdUE());
-        if (deletedUE.isPresent()){
-            ueRepository.delete(deletedUE.get());
-        }else {
-            throw new RuntimeException("UE introuvable !!!");
-        }
-
+        ueRepository.delete(ue);
     }
 
+    public List<EC> afficherLesECs(UE ue){
+        return ueRepository.findByUE(ue);
+    }
+    
 
 
 }

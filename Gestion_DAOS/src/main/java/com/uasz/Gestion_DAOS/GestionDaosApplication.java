@@ -5,32 +5,31 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
-import com.uasz.Gestion_DAOS.Modele.repartition.PER;
-import com.uasz.Gestion_DAOS.Modele.repartition.Vacataire;
-import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
-import com.uasz.Gestion_DAOS.Repository.repartition.PerRepository;
-import com.uasz.Gestion_DAOS.Repository.repartition.RepartitionRepository;
-import com.uasz.Gestion_DAOS.Repository.repartition.VacataireRepository;
-import org.hibernate.type.BagType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+import com.uasz.Gestion_DAOS.Modele.repartition.PER;
+import com.uasz.Gestion_DAOS.Modele.repartition.Vacataire;
+import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
+import com.uasz.Gestion_DAOS.Repository.repartition.PerRepository;
+import com.uasz.Gestion_DAOS.Repository.repartition.VacataireRepository;
+import com.uasz.Gestion_DAOS.Service.maquette.ECService;
 import com.uasz.Gestion_DAOS.Service.maquette.UEService;
+
 import lombok.extern.slf4j.Slf4j;
 
 @SpringBootApplication
 @Slf4j
 public class GestionDaosApplication implements CommandLineRunner {
-
-	public static void main(String[] args) {
-		SpringApplication.run(GestionDaosApplication.class, args);
-	}
 	@Autowired
 	private UEService ueService;
+	@Autowired 
+	private ECService ecService;
 	@Autowired
 	private PerRepository perRepository;
 	@Autowired
@@ -38,8 +37,11 @@ public class GestionDaosApplication implements CommandLineRunner {
 	@Autowired
 	private BatimentRepository batimentRepository;
 
-	@Override
+	public static void main(String[] args) {
+		SpringApplication.run(GestionDaosApplication.class, args);
+	}
 
+	@Override
 	public void run(String... args) throws Exception{
 		log.info("\n\n"+
 				"╔═╗╔═╗╔═╗╦  ╦╔═╗╔═╗╔╦╗╦╔═╗╔╗╔\n" +
@@ -54,62 +56,15 @@ public class GestionDaosApplication implements CommandLineRunner {
 				"                             \n" +
 				"                             \n"
 		);
-		ueService.ajouterUE(new UE(
-				null,
-				"Reseaux & Telecoms",
-				"INF351",
-				3,
-				2,
-				new Date(System.currentTimeMillis()),
-				null,
-				null,
-				null
-		));
-		ueService.ajouterUE(new UE(
-				null,
-				"Genies Logicielles",
-				"INF351",
-				3,
-				2,
-				new Date(System.currentTimeMillis()),
-				null,
-				null,
-				null
-		));
-		ueService.ajouterUE(new UE(
-				null,
-				"Administration Systeme",
-				"INF342",
-				3,
-				2,
-				new Date(System.currentTimeMillis()),
-				null,
-				null,
-				null
-		));
-		ueService.ajouterUE(new UE(
-				null,
-				"Anglais",
-				"INF351",
-				
-				3,
-				2,
-				new Date(System.currentTimeMillis()),
-				null,
-				null,
-				null
-		));
-		ueService.ajouterUE(new UE(
-				null,
-				"Base de donnees",
-				"INF351",
-				3,
-				2,
-				new Date(System.currentTimeMillis()),
-				null,
-				null,
-				null
-		));
+		////////////////////////////////////////////////////////////////////////////////
+		for (int i = 0; i < 5; i++) {
+			ueService.ajouterUE(new UE(null, "Libelle "+ i, "Code " + i, i, i, null, new Date(System.currentTimeMillis()), null, null, null));
+			
+		}
+		///////////////////////////////////////////////////////////////////////////////
+		for (int i = 0; i < 5; i++) {
+		ecService.ajouterEC(new EC(null, "Libelle "+ i, "Code " + i, null, null));
+		}
 		System.out.println("----------------------------------------------------------------");
 //
 			List<PER> listPer = new ArrayList<PER>();

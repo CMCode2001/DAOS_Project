@@ -31,6 +31,7 @@ public class UE {
     private  String codeUE;
     private int creditUE;
     private int coefficientUE;
+    private String descriptionUE;
     @Temporal(TemporalType.DATE)
     private Date dateCreation;
 
