@@ -1,43 +1,64 @@
 package com.uasz.Gestion_DAOS.Controller.maquette;
 
-import com.uasz.Gestion_DAOS.Modele.maquette.UE;
-import com.uasz.Gestion_DAOS.Service.maquette.UEService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-import java.util.Optional;
+import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
+import com.uasz.Gestion_DAOS.Service.maquette.UEService;
+
+import lombok.AllArgsConstructor;
 
 @Controller
-@Slf4j
-@NoArgsConstructor
 @AllArgsConstructor
 public class UEController {
     @Autowired
     private UEService ueService;
+    @Autowired
+    private UERepository ueRepository;
 
-   @RequestMapping(value = "/ue", method = RequestMethod.GET)
+    @GetMapping("/ue")
     public String lister_ue(Model model){
-       List<UE> ueList = ueService.listerToutUE();
-       model.addAttribute("listeDesUE", ueList);
-       return "ue";
-   }
+        List<UE> ueList = ueService.listerToutUE();
+        model.addAttribute("listeDesUE", ueList);
+        return  "ue";
+    }
 
-   @RequestMapping(value = "/ajouter_ue", method = RequestMethod.POST)
+    @GetMapping("/supprimer")
+    public String supprimerUnUE(Long id){
+        ueService.supprimerUE(ueService.rechercherUE(id).get());
+        return "redirect:/ue";
+    }
+
+    @PostMapping(value = "/ajouter_ue")
     public String ajouter_ue(Model model, UE ue){
-       ueService.ajouterUE(ue);
-       return "redirect:/ue";
-   }
-@GetMapping (value="/deleteUE/{id}")
-   public String deleteUE (@PathVariable Long id){
-       ueService.deleteUE(id);
-       return "redirect:/ue";
-   }
+        ueService.ajouterUE(ue);
+        return "redirect:/ue";
+    }
+
+    @PostMapping(value = "/modifier_ue")
+    public String modifier_ue(Long id){
+        ueService.modifierUE(ueService.rechercherUE(id).get());
+        return "redirect:/ue";
+    }
+
+
+    /*@RequestMapping(value = "/ue", method = RequestMethod.GET)
+        public String lister_ue(Model model){
+        List<UE> ueList = ueService.listerToutUE();
+        model.addAttribute("listeDesUE", ueList);
+        return "ue";
+    }
+
+    */
+
+
+
+
+
 }

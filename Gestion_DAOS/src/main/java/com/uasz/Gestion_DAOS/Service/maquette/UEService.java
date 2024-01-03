@@ -70,14 +70,21 @@ public class UEService {
         }
 
     }
+
     /**
      * Methode permettant de supprimer un UE;
-     *
-     * @param
-     * @return
+     * @param ue
      */
-    public void deleteUE(Long id){
-        ueRepository.deleteById(id);
+    public void supprimerUE(UE ue){
+        Optional<UE> deletedUE = rechercherUE(ue.getIdUE());
+        if (deletedUE.isPresent()){
+            ueRepository.delete(deletedUE.get());
+        }else {
+            throw new RuntimeException("UE introuvable !!!");
+        }
+
     }
+
+
 
 }

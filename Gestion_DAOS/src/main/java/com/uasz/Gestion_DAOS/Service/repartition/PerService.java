@@ -67,11 +67,11 @@ public class PerService {
     /**
      * Methode permettant de supprimer un PER;
      *
-     * @param matriculePer
+     * @param od
      * @return
      */
-    public void deletePer(Long matriculePer){
-        perRepository.deleteById(matriculePer);
+    public void deletePer(Long id){
+        perRepository.deleteById(id);
     }
     
 }

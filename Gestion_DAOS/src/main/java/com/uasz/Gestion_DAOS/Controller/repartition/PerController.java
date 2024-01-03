@@ -35,9 +35,9 @@ public class PerController {
         perService.ajouterPer(per);
         return "redirect:/per";
     }
-    @GetMapping(value="/delete/{id}")
-    public String deletePER (@PathVariable Long matriculePer){
-        perService.deletePer(matriculePer);
+    @GetMapping(value="/deletePER/{id}")
+    public String deletePER (@PathVariable Long id){
+        perService.deletePer(id );
         return "redirect:/per";
     }
 }
