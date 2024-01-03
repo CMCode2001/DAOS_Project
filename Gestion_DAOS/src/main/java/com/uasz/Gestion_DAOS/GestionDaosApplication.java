@@ -1,12 +1,18 @@
 package com.uasz.Gestion_DAOS;
 
 import java.sql.Date;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
 import com.uasz.Gestion_DAOS.Modele.repartition.PER;
+import com.uasz.Gestion_DAOS.Modele.repartition.Vacataire;
+import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
 import com.uasz.Gestion_DAOS.Repository.repartition.PerRepository;
 import com.uasz.Gestion_DAOS.Repository.repartition.RepartitionRepository;
+import com.uasz.Gestion_DAOS.Repository.repartition.VacataireRepository;
+import org.hibernate.type.BagType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +33,11 @@ public class GestionDaosApplication implements CommandLineRunner {
 	private UEService ueService;
 	@Autowired
 	private PerRepository perRepository;
+	@Autowired
+	private VacataireRepository vacataireRepository;
+	@Autowired
+	private BatimentRepository batimentRepository;
+
 	@Override
 
 	public void run(String... args) throws Exception{
@@ -99,9 +110,9 @@ public class GestionDaosApplication implements CommandLineRunner {
 				null,
 				null
 		));
-		System.out.println("--------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------");
 //
-			List<PER> repartitions = new ArrayList<PER>();
+			List<PER> listPer = new ArrayList<PER>();
 //
 			PER per1 = new PER();
 			per1.setMatriculePer("A01");
@@ -128,9 +139,61 @@ public class GestionDaosApplication implements CommandLineRunner {
 			per4.setNomEns("NDIAYE");
 			per4.setPrenomEns("MARIE");
 
-		repartitions.add(per1); repartitions.add(per2);repartitions.add(per3);repartitions.add(per4);
-		perRepository.saveAll(repartitions);
+		listPer.add(per1); listPer.add(per2); listPer.add(per3); listPer.add(per4);
+		perRepository.saveAll(listPer);
+		
+		System.out.println("----------------------------------------------------------------");
+		List<Vacataire> listVac = new ArrayList<Vacataire>();
+		
+		Vacataire vac1 = new Vacataire();
+		vac1.setSpecialite("Doctorant");
+		vac1.setNomEns("MBOUP");
+		vac1.setPrenomEns("Mor");
+		vac1.setGradeEns("Assistant");
 
+		Vacataire vac2 = new Vacataire();
+		vac2.setSpecialite("Doctorant");
+		vac2.setNomEns("BAKHOUM");
+		vac2.setPrenomEns("Ana");
+		vac2.setGradeEns("Assistant");
+
+		Vacataire vac3 = new Vacataire();
+		vac3.setSpecialite("Doctorant");
+		vac3.setNomEns("GUEYE");
+		vac3.setPrenomEns("Assane");
+		vac3.setGradeEns("Assistant");
+
+		Vacataire vac4 = new Vacataire();
+		vac4.setSpecialite("Doctorant");
+		vac4.setNomEns("DIENE");
+		vac4.setPrenomEns("Serigne Mbacke");
+		vac4.setGradeEns("Assistant");
+		listVac.add(vac1); listVac.add(vac2); listVac.add(vac3); listVac.add(vac4);
+		vacataireRepository.saveAll(listVac);
+		System.out.println("----------------------------------------------------------------");
+
+		List<Batiment> batimentList = new ArrayList<Batiment>();
+		Batiment batiment1 = new Batiment();
+		batiment1.setNomBatiment("Bâtiment A");
+		batiment1.setNb_Etage("5");
+		batiment1.setAnneeBatiment(Year.of(2020));
+		batiment1.setTypeBatiment("Scolaire");
+
+		// Instanciation 2
+		Batiment batiment2 = new Batiment();
+		batiment2.setNomBatiment("Bâtiment B");
+		batiment2.setNb_Etage("3");
+		batiment2.setAnneeBatiment(Year.of(2018));
+		batiment2.setTypeBatiment("Administratif");
+
+		// Instanciation 3 avec des salles
+		Batiment batiment3 = new Batiment();
+		batiment3.setNomBatiment("Bâtiment C");
+		batiment3.setNb_Etage("4");
+		batiment3.setAnneeBatiment(Year.of(2022));
+		batiment3.setTypeBatiment("Laboratoire");
+		batimentList.add(batiment1); batimentList.add(batiment2); batimentList.add(batiment3);
+		batimentRepository.saveAll(batimentList);
 	}
 
 }

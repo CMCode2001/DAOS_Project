@@ -42,9 +42,9 @@ public class UEController {
     }
 
 
-    @PostMapping(value = "/modifier_ue")
-    public String modifier_ue(Long id){
-        ueService.modifierUE(ueService.rechercherUE(id).get());
+//    @PostMapping(value = "/modifier_ue")
+//    public String modifier_ue(Long id){
+//        ueService.modifierUE(ueService.rechercherUE(id).get());
 
     
 
