@@ -41,23 +41,20 @@ public class UEController {
         return "redirect:/ue";
     }
     
-    @PostMapping(value = "/modifier_ue")
-    public String modifier_ue(Long id){
-        ueService.modifierUE(ueService.rechercherUE(id).get());
+
+    @GetMapping("/modifier_ue")
+    public String modifier(Long id, Model model) {
+        UE ue = ueService.modifierUE(ueService.rechercherUE(id).get()); 
+        model.addAttribute("ue", ue);
         return "redirect:/ue";
     }
 
-
-    /*@RequestMapping(value = "/ue", method = RequestMethod.GET)
-        public String lister_ue(Model model){
-        List<UE> ueList = ueService.listerToutUE();
-        model.addAttribute("listeDesUE", ueList);
-        return "ue";
+    @PostMapping("/editer")
+    public String editer(Model model, UE ue){
+        
+        return "redirect:/ue";
     }
-
-    */
-
-
+    
 
 
 
