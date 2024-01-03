@@ -11,12 +11,12 @@ import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
 
 import jakarta.transaction.Transactional;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 
 
 @Service
 @Transactional
-@Data
+@AllArgsConstructor
 public class UEService {
     @Autowired
     private UERepository ueRepository;

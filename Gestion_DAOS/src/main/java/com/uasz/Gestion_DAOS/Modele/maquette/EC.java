@@ -23,7 +23,6 @@ public class EC {
     private Long idEC;
     private String libelleEC;
     private  String codeEC;
-    private String descriptionEC;
 
     /**
      * Representation de la relation entre EC-UE

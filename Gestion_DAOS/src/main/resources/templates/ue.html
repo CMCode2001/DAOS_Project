@@ -67,17 +67,19 @@
                                 </td>
                                 <td>
                                     <a 
-                                    th:href="@{/modifier_ue(id=${p.idUE})}"
-                                    class="btn"
                                     type="button"
+                                    class="btn" 
                                     data-bs-toggle="modal" 
-                                    data-bs-target="#addModal"
-                                    > 
+                                    data-bs-target="#exampleModal"
+                                    th:href="@{/modifier_ue(id=${p.idUE})}"
+                                    >
+
                                         <i class="bi bi-pen-fill"
                                         style="
                                         font-size: 22px;
                                         color: rgb(24, 95, 47)"
                                         ></i>
+                                        
                                     </a>
                                 </td>
                             </tr>
@@ -127,15 +129,47 @@
             </div>
         </div>
 
-        <!-- Modal for updating -->
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="updateModalLabel">Modifier un UE</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+        <!-- Modal for modification -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier un UE</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for modification -->
+                        <form th:action="@{/editer}" method="post">
+                            <div >
+                                <label for="codeUE">Code</label>
+                                <input type="text" class="form-control" id="codeUE" name="codeUE" required />
+                            </div>
+                        
+                            <div>
+                                <label for="libelleUE">Libelle</label>
+                                <input type="text" class="form-control" id="libelleUE" name="libelleUE" required />
+                            </div>
+                        
+                            <div>
+                                <label for="creditUE">Credits</label>
+                                <input type="text" class="form-control" id="creditUE" name="creditUE" required />
+                            </div>
+                        
+                            <div>
+                                <label for="coefficientUE">Coefficient</label>
+                                <input type="text" class="form-control" id="coefficientUE" name="coefficientUE" required />
+                            </div>
 
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-outline-success mt-2" type="submit">Ajouter UE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </body> 
 </html>
