@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class EnseignementService {
     private EnseignementRepository eRepository;
 
     public void ajouterEnseignement(Enseignement ens){
+        ens.setDateCreationEnseignement(new Date(System.currentTimeMillis()));
         eRepository.save(ens);
     }
 
@@ -32,10 +34,12 @@ public class EnseignementService {
 
     public Enseignement modifierEnseignement(Enseignement ens){
         Enseignement e = rechercherUneEnseignement(ens.getIdEnseignement());
+        e.setObjectifsEnseignement(ens.getObjectifsEnseignement());
+        e.setDescriptionEnseignements(ens.getDescriptionEnseignements());
         return eRepository.save(e);
     }
 
-    public void supprimerEnseignement(Long idEns){
-        eRepository.delete(rechercherUneEnseignement(idEns));
+    public void supprimerEnseignement(Enseignement ens){
+        eRepository.delete(ens);
     }
 }

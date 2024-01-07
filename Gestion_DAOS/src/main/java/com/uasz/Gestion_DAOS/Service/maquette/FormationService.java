@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class FormationService {
     private FormationRepository fRepository;
 
     public void ajouterFormation(Formation f){
+        f.setDateCreationFormation(new Date(System.currentTimeMillis()));
         fRepository.save(f);
     }
 
@@ -30,14 +32,14 @@ public class FormationService {
         return fRepository.findById(idFil).get();
     }
 
-    public Formation modifierFormation(Formation newFormation, Long idFil){
-        Formation f = rechercherUneFormation(idFil);
+    public Formation modifierFormation(Formation newFormation){
+        Formation f = rechercherUneFormation(newFormation.getIdFormation());
         f.setLibelleFormation(newFormation.getLibelleFormation());
         f.setDescriptionFormation(newFormation.getDescriptionFormation());
         return fRepository.save(f);
     }
 
-    public void supprimerFormation(Long idFil){
-        fRepository.delete(rechercherUneFormation(idFil));
+    public void supprimerFormation(Formation f){
+        fRepository.delete(f);
     }
 }

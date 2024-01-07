@@ -63,7 +63,7 @@ public class GestionDaosApplication implements CommandLineRunner {
 		}
 		///////////////////////////////////////////////////////////////////////////////
 		for (int i = 0; i < 5; i++) {
-		ecService.ajouterEC(new EC(null, "Libelle "+ i, "Code " + i, null, null));
+		ecService.ajouterEC(new EC(null, "libelle " + i, "Code " + i, i, i, i, i, i, null, null, null, null));
 		}
 		System.out.println("----------------------------------------------------------------");
 //

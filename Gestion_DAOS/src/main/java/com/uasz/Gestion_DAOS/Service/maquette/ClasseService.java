@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +17,30 @@ public class ClasseService {
     @Autowired
     private ClasseRepository cRepository;
 
-    public Classe ajouterClasse(Classe c) {
-        Classe classe = cRepository.save(c);
-        return classe;
+    public void ajouterClasse(Classe c) {
+        c.setDateCreationClasse(new Date(System.currentTimeMillis()));
+        cRepository.save(c);
     }
 
     public List<Classe> rechercherLesClasses(){
-        List<Classe> classes = cRepository.findAll();
-        return classes; 
+        return cRepository.findAll();
     }
 
-    public Classe rechercherUneClasse(Long idClasse){
-        Classe classe = cRepository.findById(idClasse).get();
-        return classe;
+    public Classe rechercherUneClasse(Long idClasse){ 
+        return cRepository.findById(idClasse).get();
     }
 
     public Classe modifierClasse(Classe classe){
         Classe cModifier = rechercherUneClasse(classe.getIdClasse());
-        cModifier.setEffectifClasse(classe.getEffectifClasse());
         cModifier.setLibelleClasse(classe.getLibelleClasse());
+        cModifier.setEffectifClasse(classe.getEffectifClasse());
+        cModifier.setNbreGroupeClasse(classe.getNbreGroupeClasse());
+        cModifier.setDescriptionClasse(classe.getDescriptionClasse());
         return cRepository.save(cModifier);
     }
 
-    public void supprimerClasse(Long idClasse){
-        Classe cDeleted = rechercherUneClasse(idClasse);
-        cRepository.delete(cDeleted);
+    public void supprimerClasse(Classe c){
+        cRepository.delete(c);
     }
     
 }

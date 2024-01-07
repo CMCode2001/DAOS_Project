@@ -71,7 +71,7 @@
     </div>
     
         <!--Debut Lister de UEs-->
-        <div class="table-responsive">
+        <div class="table-responsive" style="margin-left: 20px; margin-right: 20px;">
             <table class="table table-bordered table-striped" id="table_UE">
                 <thead>
                     <tr>
@@ -93,7 +93,7 @@
                         <td th:text="${p.coefficientUE}"></td>
                         <td>
                             <button  
-                                class="btn btn-danger"
+                                class="btn btn-danger btn-sm"
                                 data-title="Delete"
                                 data-toggle="modal"
                                 th:attr="data-target='#form_Supprimer_UE'+${p.idUE}">
@@ -103,7 +103,7 @@
                         </td>
                         <td>
                             <button
-                                class="btn btn-info"
+                                class="btn btn-info btn-sm"
                                 data-title="Edit"
                                 data-toggle="modal"
                                 th:attr="data-target='#form_Modifier_UE'+${p.idUE}"
@@ -113,7 +113,7 @@
                             </button>
                         </td>
                         <td>
-                            <a href="#">voir</a>
+                            <a class="btn btn-primary btn-sm" th:href="@{/details_ue(id=${p.idUE})}">voir</a>
                         </td>
     
                         <!--Boite modal pour modifier UE-->
@@ -124,7 +124,7 @@
                                         <!--modal Header-->
                                         <div class="modal-header panel-heading">
                                             <h4 class="modal-header" style="text-align: center;">
-                                                Ajouter un UE
+                                                Modifier un UE
                                             </h4>
                                         </div>
                                         <!---Modal Body-->
@@ -171,7 +171,7 @@
                                         <!--modal Header-->
                                         <div class="modal-header panel-heading">
                                             <h4 class="modal-header" style="text-align: center;">
-                                                Ajouter un UE
+                                                Supprimer un UE
                                             </h4>
                                         </div>
                                         <!---Modal Body-->

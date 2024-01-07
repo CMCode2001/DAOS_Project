@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class FiliereService {
     private FiliereRepository fRepository;
 
     public void ajouterFiliere(Filiere f){
+        f.setDateCreationFiliere(new Date(System.currentTimeMillis()));
         fRepository.save(f);
     }
 
@@ -30,13 +32,14 @@ public class FiliereService {
         return fRepository.findById(idFil).get();
     }
 
-    public Filiere modifierFiliere(Filiere newFiliere, Long idFil){
-        Filiere f = rechercherUneFiliere(idFil);
-        f.setNomFiliere(newFiliere.getNomFiliere());
+    public Filiere modifierFiliere(Filiere newFiliere){
+        Filiere f = rechercherUneFiliere(newFiliere.getIdFiliere());
+        f.setLibelleFiliere(newFiliere.getLibelleFiliere());
+        f.setDescriptionFiliere(newFiliere.getDescriptionFiliere());
         return fRepository.save(f);
     }
 
-    public void supprimerFiliere(Long idFil){
-        fRepository.delete(rechercherUneFiliere(idFil));
+    public void supprimerFiliere(Filiere f){
+        fRepository.delete(f);
     }
 }

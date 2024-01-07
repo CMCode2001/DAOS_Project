@@ -23,7 +23,7 @@ public class UEService {
 
     public void ajouterUE(UE ue){
         UE savedUE = ueRepository.save(ue);
-        savedUE.setDateCreation(new Date(System.currentTimeMillis()));
+        savedUE.setDateCreationUE(new Date(System.currentTimeMillis()));
         ueRepository.save(savedUE);
     }
 

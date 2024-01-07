@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class GroupeService {
     private GroupeRepository gRepository;
 
     public void ajouterGroupe(Groupe g){
+        g.setDateCreationGroupe(new Date(System.currentTimeMillis()));
         gRepository.save(g);
     }
 
@@ -30,15 +32,16 @@ public class GroupeService {
         return gRepository.findById(idGroupe).get();
     }
 
-    public Groupe modifierGroupe(Groupe newGroupe, Long idGroupe){
-        Groupe g = rechercherUneGroupe(idGroupe);
-        g.setNomGroupe(newGroupe.getNomGroupe());
+    public Groupe modifierGroupe(Groupe newGroupe){
+        Groupe g = rechercherUneGroupe(newGroupe.getIdGroupe());
+        g.setLibelleGroupe(newGroupe.getLibelleGroupe());
+        g.setNumeroGroupe(newGroupe.getNumeroGroupe());
         g.setEffectifGroupe(newGroupe.getEffectifGroupe());
-
+        g.setDescriptionGroupe(newGroupe.getDescriptionGroupe());
         return gRepository.save(g);
     }
 
-    public void supprimerGroupe(Long idGroupe){
-        gRepository.delete(rechercherUneGroupe(idGroupe));
+    public void supprimerGroupe(Groupe g){
+        gRepository.delete(g);
     }
 }

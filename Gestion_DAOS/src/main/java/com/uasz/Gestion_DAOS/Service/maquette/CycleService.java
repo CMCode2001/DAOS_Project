@@ -1,4 +1,5 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class CycleService {
     private CycleRepository cRepository;
 
     public void ajouterCycle(Cycle c){
+        c.setDateCreationCycle(new Date(System.currentTimeMillis()));
         cRepository.save(c);
     }
 
@@ -32,12 +34,12 @@ public class CycleService {
     public Cycle modifierCycle(Cycle c){
         Cycle cycle = rechercherUnCycle(c.getIdCycle());
         cycle.setLibelleCycle(c.getLibelleCycle());
-
+        cycle.setDescriptionCycle(c.getDescriptionCycle());
         return cRepository.save(cycle);
     }
 
-    public void supprimerCycle(Long idCycle){
-        cRepository.delete(rechercherUnCycle(idCycle));
+    public void supprimerCycle(Cycle c){
+        cRepository.delete(c);
     }
 }
 

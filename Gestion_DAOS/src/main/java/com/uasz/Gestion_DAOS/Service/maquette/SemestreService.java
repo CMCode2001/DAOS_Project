@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,9 @@ public class SemestreService {
     @Autowired
     private SemestreRepository sRepository;
 
-    public void ajouterSemestre(Semestre f){
-        sRepository.save(f);
+    public void ajouterSemestre(Semestre s){
+        s.setDateCreationSemestre(new Date(System.currentTimeMillis()));
+        sRepository.save(s);
     }
 
     public List<Semestre> rechercherSemestres(){
@@ -23,13 +25,14 @@ public class SemestreService {
         return sRepository.findById(idSemestre).get();
     }
 
-    public Semestre modifierSemestre(Semestre newSemestre, Long idSemestre){
-        Semestre semestre = rechercherUneSemestre(idSemestre);
-        semestre.setNumeroSemestre(newSemestre.getNumeroSemestre());
+    public Semestre modifierSemestre(Semestre newSemestre){
+        Semestre semestre = rechercherUneSemestre(newSemestre.getIdSemestre());
+        semestre.setLibelleSemestre(newSemestre.getLibelleSemestre());
+        semestre.setDescriptionSemestre(newSemestre.getDescriptionSemestre());
         return sRepository.save(semestre);
     }
 
-    public void supprimerSemestre(Long idSemestre){
-        sRepository.delete(rechercherUneSemestre(idSemestre));
+    public void supprimerSemestre(Semestre s){
+        sRepository.delete(s);
     }
 }
