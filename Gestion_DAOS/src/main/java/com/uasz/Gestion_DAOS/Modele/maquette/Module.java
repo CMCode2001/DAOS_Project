@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +23,12 @@ import lombok.NoArgsConstructor;
 public class Module {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idModule;
+    private String libelleModule;
+    private String coursModule;
+    private int dureeModule;
+    private String objectifsModule, descriptionModule;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationModule;
 
     /**
     * Representation de la relation Semestre-Module;

@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +26,11 @@ public class Classe {
     private Long idClasse;
     private String libelleClasse;
     private int effectifClasse;
+    private int nbreGroupeClasse;
+    private String descriptionClasse;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationClasse;
+
 
     /**
      * Representation de la relation classe-Groupe;

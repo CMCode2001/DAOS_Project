@@ -12,8 +12,10 @@ import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Service.maquette.ECService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 @AllArgsConstructor
 public class ECController {
     @Autowired
@@ -25,23 +27,31 @@ public class ECController {
         model.addAttribute("listeDesECs", ecs);
         return "ec";
     }
-
-    @GetMapping("/supprimer_ec")
-    public String supprimer_ec(Long id){
-        ecService.supprimerEC(id);
-        return "redirect:/ec";
-    }
-
     @PostMapping("/ajouter_ec")
     public String ajouter_ec(Model model, EC ec){
         ecService.ajouterEC(ec);
         return "redirect:/ec";
     }
 
-    @GetMapping("/formEC")
-    public String formEC(Model model){
-        model.addAttribute("ec", new EC());
-        return "formEC";
+
+    @PostMapping("/ajouter_ec_ue")
+    public String ajouter_ec_ue(Model model, EC ec){
+        ecService.ajouterEC(ec);
+        log.info("id ue = " + ec.getUe().getIdUE());
+        return "redirect:/details_ue?id="+ec.getUe().getIdUE();
+    }
+
+    @PostMapping("/modifier_ec_ue")
+    public String modifier_ec_ue(Model model, EC ec){
+        ecService.modifierEC(ec);
+        return "redirect:/details_ue?id="+ec.getUe().getIdUE();
+    }
+
+    @PostMapping("/supprimer_ec_ue")
+    public String supprimer_ec_ue(Model model, EC ec){
+        Long id = ec.getUe().getIdUE();
+        ecService.supprimerEC(ec);
+        return "redirect:/details_ue?id="+id;
     }
 
 }

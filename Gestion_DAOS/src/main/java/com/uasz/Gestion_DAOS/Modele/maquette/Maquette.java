@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +26,8 @@ public class Maquette {
     private Long idMaquette;
     private String libelleMaquette;
     private String codeMaquette;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationMaquette;
 
 
     /**

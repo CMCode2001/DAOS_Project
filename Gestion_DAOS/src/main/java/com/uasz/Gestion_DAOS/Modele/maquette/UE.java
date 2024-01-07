@@ -33,7 +33,7 @@ public class UE {
     private int coefficientUE;
     private String descriptionUE;
     @Temporal(TemporalType.DATE)
-    private Date dateCreation;
+    private Date dateCreationUE;
 
     /**
      * Representation de la relation entre UE-EC
