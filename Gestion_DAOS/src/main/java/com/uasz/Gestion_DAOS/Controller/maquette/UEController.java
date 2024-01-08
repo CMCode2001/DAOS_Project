@@ -52,7 +52,7 @@ public class UEController {
         UE ue = ueService.rechercherUE(id);
         List<EC> ecList = ueService.afficherLesECs(ue);
         model.addAttribute("ue", ue);
-        model.addAttribute("listeDesECs", ecList);
+        model.addAttribute("listeDesEC", ecList);
         return "ue_details";
     }
 }
