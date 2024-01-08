@@ -24,7 +24,7 @@ public class ECController {
     @GetMapping("/ec")
     public String lister_ec(Model model){
         List<EC> ecs = ecService.rechercherTousEC();
-        model.addAttribute("listeDesECs", ecs);
+        model.addAttribute("listeDesEC", ecs);
         return "ec";
     }
     @PostMapping("/ajouter_ec")
@@ -37,7 +37,6 @@ public class ECController {
     @PostMapping("/ajouter_ec_ue")
     public String ajouter_ec_ue(Model model, EC ec){
         ecService.ajouterEC(ec);
-        log.info("id ue = " + ec.getUe().getIdUE());
         return "redirect:/details_ue?id="+ec.getUe().getIdUE();
     }
 
