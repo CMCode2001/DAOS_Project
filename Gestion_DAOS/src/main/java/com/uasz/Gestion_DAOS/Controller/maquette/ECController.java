@@ -12,10 +12,8 @@ import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Service.maquette.ECService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 @AllArgsConstructor
 public class ECController {
     @Autowired
