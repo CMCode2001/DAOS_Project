@@ -1,11 +1,15 @@
 package com.uasz.Gestion_DAOS.Modele.emploi;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +22,10 @@ public class Deroulement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDeroulement;
+    private String objectifsDeroulement;
+    private String descriptionDeroulement;
+    @Temporal(TemporalType.DATE)
+    private Date dataCreationDeroulement;
 
     /**
      * Representation de la relation Seance-Deroulement

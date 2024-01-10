@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" href="../static/css/buttons.dataTables.min.css" th:href="@{/css/buttons.dataTables.min.css}" />
+    <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css" th:href="@{/css/jquery.dataTables.min.css}" />
+
+
+    <script src="../static/js/jquery-3.7.0.js" th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="../static/js/dataTables.buttons.min.js" th:src="@{/js/dataTables.buttons.min.js}"></script>
+    <script src="../static/js/jquery.dataTables.min.js" th:src="@{/js/jquery.dataTables.min.js}"></script>
+    
+
+    <title>Page pour les ECs </title>
+</head>
+<body>
+
+    <div class="row" style="padding: 10px 0;">
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form_Ajouter_EC">
+                Ajouter EC
+            </button>
+        </div>
+    </div>
+        <!-- Boite Modal pour ajouter UE-->
+    <div data-dismiss="modal">
+        <div class="modal fade" id="form_Ajouter_EC">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!--modal Header-->
+                    <div class="modal-header panel-heading">
+                        <h4 class="modal-header" >
+                            Ajouter un EC 
+                        </h4>
+                    </div>
+                    <!---Modal Body-->
+                    <form th:action="@{ajouter_ec}" method="post">
+                    <div class="modal-body">
+                        <div >
+                            <label for="codeEC">Code</label>
+                            <input type="text" class="form-control" id="codeEC" name="CodeEC"/>
+                        </div>
+
+                        <div>
+                            <label for="libelleEC">Libelle</label>
+                            <input type="text" class="form-control" id="libelleEC" name="libelleEC"/>
+                        </div>
+
+                        <div>
+                            <label for="cm">Cours Magistrals</label>
+                            <input type="text" class="form-control" id="cm" name="cm" required/>
+                        </div>
+
+                        <div>
+                            <label for="td">Travaux diriges</label>
+                            <input type="text" class="form-control" id="td" name="td" required />
+                        </div>
+
+                        <div>
+                            <label for="tp">Travaux pratiques</label>
+                            <input type="text" class="form-control" id="tp" name="tp" required />
+                        </div>
+                        <div>
+                            <label for="tpe">Travaux Personels de L'etudiant</label>
+                            <input type="text" class="form-control" id="tpe" name="tpe" required />
+                        </div>
+                        <div>
+                            <label for="coefficientEC">Coefficient</label>
+                            <input type="text" class="form-control" id="coefficientEC" name="coefficientEC" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit">Ajouter EC</button>
+                    </div>
+                    
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Debut Lister de UEs-->
+    <div class="table-responsive" style="margin-left: 20px; margin-right: 20px; margin-top:10;">
+        <table class="table table-bordered table-striped" id="table_EC">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Libelle</th>
+                    <th>Code</th>
+                    <th>CM</th>
+                    <th>TD</th>
+                    <th>TP</th>
+                    <th>CM + TP/TD</th>
+                    <th>TPE</th>
+                    <th>VHT</th>
+                    <th>Coefficient</th>
+                    <th colspan="2">Operations</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p:${listeDesEC}">
+                        <td th:text="${p.idEC}"></td>
+                        <td th:text="${p.libelleEC}"></td>
+                        <td th:text="${p.codeEC}"></td>
+                        <td th:text="${p.cm}"></td>
+                        <td th:text="${p.td}"></td>
+                        <td th:text="${p.tp}"></td>
+                        <td th:text="${p.tp+ p.td +p.td}"></td>
+                        <td th:text="${p.tpe}"></td>
+                        <td th:text="${p.tpe + p.tp+ p.td +p.td}"></td>
+                        <td th:text="${p.coefficientEC}"></td>
+                    <td>
+                        <button  
+                            class="btn btn-danger btn-sm"
+                            data-title="Delete"
+                            data-toggle="modal"
+                            th:attr="data-target='#form_Supprimer_EC'+${p.idEC}">
+                            Delete
+                        </button> 
+
+                    </td>
+                    <td>
+                        <button
+                            class="btn btn-info btn-sm"
+                            data-title="Edit"
+                            data-toggle="modal"
+                            th:attr="data-target='#form_Modifier_EC'+${p.idEC}"
+                        >
+                            Modifier
+                            
+                        </button>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" th:href="@{/details_EC(id=${p.idEC})}">voir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#table_EC").DataTable({
+                "lengthMenu": [10, 25, 50, 75, 100], // Set the entries per page options
+                "searching": true
+            });
+        })
+    </script>
+
+</body> 
+</html>

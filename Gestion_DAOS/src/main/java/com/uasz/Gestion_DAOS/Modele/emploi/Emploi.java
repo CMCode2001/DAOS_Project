@@ -3,8 +3,6 @@ package com.uasz.Gestion_DAOS.Modele.emploi;
 import java.util.Date;
 import java.util.List;
 
-import com.uasz.Gestion_DAOS.Modele.Constante.Jour;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,13 +23,13 @@ public class Emploi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmploi;
-    private Jour jour;
-    private int horaireDebut;
-    private int horaireFin;
+    private int dureeEmploi;
     @Temporal(TemporalType.DATE)
-    private Date dateDebut;
+    private Date dateDebutEmploi;
     @Temporal(TemporalType.DATE)
-    private Date dateFin;
+    private Date dateFinEmploi;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationEmploi;
     
     /**
      * Representation de relation Emploi-seance

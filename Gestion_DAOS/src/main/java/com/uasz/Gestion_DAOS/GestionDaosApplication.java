@@ -1,7 +1,6 @@
 package com.uasz.Gestion_DAOS;
 
 import java.sql.Date;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,25 +128,12 @@ public class GestionDaosApplication implements CommandLineRunner {
 
 		List<Batiment> batimentList = new ArrayList<Batiment>();
 		Batiment batiment1 = new Batiment();
-		batiment1.setNomBatiment("Bâtiment A");
-		batiment1.setNb_Etage("5");
-		batiment1.setAnneeBatiment(Year.of(2020));
-		batiment1.setTypeBatiment("Scolaire");
 
 		// Instanciation 2
 		Batiment batiment2 = new Batiment();
-		batiment2.setNomBatiment("Bâtiment B");
-		batiment2.setNb_Etage("3");
-		batiment2.setAnneeBatiment(Year.of(2018));
-		batiment2.setTypeBatiment("Administratif");
-
 		// Instanciation 3 avec des salles
 		Batiment batiment3 = new Batiment();
-		batiment3.setNomBatiment("Bâtiment C");
-		batiment3.setNb_Etage("4");
-		batiment3.setAnneeBatiment(Year.of(2022));
-		batiment3.setTypeBatiment("Laboratoire");
-		batimentList.add(batiment1); batimentList.add(batiment2); batimentList.add(batiment3);
+		
 		batimentRepository.saveAll(batimentList);
 	}
 

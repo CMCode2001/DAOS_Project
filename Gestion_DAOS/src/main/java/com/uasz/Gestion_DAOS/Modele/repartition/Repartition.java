@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.repartition;
 
+import java.util.Date;
 import java.util.List;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
@@ -13,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +29,9 @@ public class Repartition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRepartition;
+    private String descriptionRepartition;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationRepartition;
 
     @ManyToOne
     @JoinColumn(name = "enseignement")

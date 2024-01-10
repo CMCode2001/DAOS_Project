@@ -1,5 +1,8 @@
 package com.uasz.Gestion_DAOS.Modele.emploi;
 
+import java.util.Date;
+
+import com.uasz.Gestion_DAOS.Modele.Constante.Jour;
 import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
 
 import jakarta.persistence.Entity;
@@ -9,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +26,11 @@ public class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSeance;
-
+    private Jour jourSeance;
+    private int dureeSeance;
+    private int debutSeance, finSeance, numeroSeance;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationSeance;
     /**
      * Representation de la relation Salle-Seance
      */
