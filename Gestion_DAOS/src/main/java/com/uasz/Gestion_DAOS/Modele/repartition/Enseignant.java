@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.repartition;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -11,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +30,8 @@ public class Enseignant {
     private String nomEns;
     private String prenomEns;
     private String gradeEns;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationEns;
 
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Repartition> repartitions;

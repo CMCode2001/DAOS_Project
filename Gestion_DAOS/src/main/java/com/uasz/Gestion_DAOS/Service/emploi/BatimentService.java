@@ -1,13 +1,17 @@
 package com.uasz.Gestion_DAOS.Service.emploi;
 
-import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
-import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
-import jakarta.transaction.Transactional;
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
+import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
+
+import jakarta.transaction.Transactional;
+import lombok.Data;
 
 @Service
 @Transactional
@@ -22,6 +26,7 @@ public class BatimentService {
      * @return batiment
      */
     public Batiment ajouterVac(Batiment batiment){
+        batiment.setDateCreationBatiment(new Date(System.currentTimeMillis()));
         return batimentRepository.save(batiment);
 
     }
@@ -49,20 +54,12 @@ public class BatimentService {
      * @return {@Code Batiment} la nouvelle Batiment modifier ou, {@code new RuntimeException()} si le Batiment n'existe pas
      */
     public Batiment modifierBat(Batiment batiment){
-        Optional<Batiment> batModif = searchVac(batiment.getIdBatiment());
-        if(batModif.isPresent()) {
-            batModif.orElseThrow().setIdBatiment(batiment.getIdBatiment());
-            batModif.orElseThrow().setNomBatiment(batiment.getNomBatiment());
-            batModif.orElseThrow().setAnneeBatiment(batiment.getAnneeBatiment());
-            batModif.orElseThrow().setTypeBatiment(batiment.getTypeBatiment());
-            batModif.orElseThrow().setNb_Etage(batiment.getNb_Etage());
-            return batimentRepository.save(batModif.get());
-        }
-        else{
-            // Gérer le cas où le Batiment n'est pas trouvée
-            throw new RuntimeException("Batiment non trouvée avec l'ID : " + batiment.getIdBatiment());
-        }
-
+        Batiment batModif = searchVac(batiment.getIdBatiment()).get();
+        batModif.setCodeBatiment(batiment.getCodeBatiment());
+        batModif.setLibelleBatiment(batiment.getLibelleBatiment());
+        batModif.setPositionBatiment(batiment.getPositionBatiment());
+        batModif.setDescriptionBatiment(batiment.getDescriptionBatiment());
+        return batimentRepository.save(batModif);
     }
     /**
      * Methode permettant de supprimer un Batiment;
@@ -70,7 +67,7 @@ public class BatimentService {
      * @param idBatiment
      * @return
      */
-    public void deleteBat(Long idBatiment){
-        batimentRepository.deleteById(idBatiment);
+    public void deleteBat(Batiment batiment){
+        batimentRepository.delete(batiment);
     }
 }

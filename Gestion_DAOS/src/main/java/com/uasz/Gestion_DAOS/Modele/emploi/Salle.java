@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Modele.emploi;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +24,12 @@ public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSalle;
-    private int numeroSalle;
+    private String libelleSalle;
+    private String codeSalle;
     private int CapaciteSalle;
-    private String typeSalle;
+    private String descriptionSalle;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationSalle;
 
     /**
      * Representation de la relation entre Batiment-Salle
