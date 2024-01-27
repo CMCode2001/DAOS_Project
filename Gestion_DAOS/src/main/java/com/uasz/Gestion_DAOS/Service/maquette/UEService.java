@@ -53,7 +53,20 @@ public class UEService {
     public List<EC> afficherLesECs(UE ue){
         return ueRepository.findByUE(ue);
     }
-    
 
+    public UE modifier_UE(UE ue, Long id){
+        ue.setIdUE(id);
+        return ueRepository.save(ue);
+    }
+
+    public void supprimer_UE(Long id){
+        ueRepository.deleteById(id);
+    }
+    
+    public UE ajouter_UE(UE ue){
+        UE savedUE = ueRepository.save(ue);
+        savedUE.setDateCreationUE(new Date(System.currentTimeMillis()));
+        return ueRepository.save(savedUE);
+    }
 
 }

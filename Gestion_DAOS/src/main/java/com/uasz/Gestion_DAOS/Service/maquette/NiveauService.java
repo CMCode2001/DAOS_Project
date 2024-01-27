@@ -24,7 +24,7 @@ public class NiveauService {
         nRepository.save(n);
     }
 
-    public List<Niveau> rechercherNiveaus(){
+    public List<Niveau> rechercherNiveaux(){
         return nRepository.findAll();
     }
 
