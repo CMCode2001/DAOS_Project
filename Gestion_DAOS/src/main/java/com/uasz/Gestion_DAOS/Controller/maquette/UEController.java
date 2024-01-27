@@ -55,4 +55,6 @@ public class UEController {
         model.addAttribute("listeDesEC", ecList);
         return "ue_details";
     }
+
+    
 }

@@ -1,6 +1,5 @@
 package com.uasz.Gestion_DAOS;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
-import com.uasz.Gestion_DAOS.Modele.maquette.EC;
-import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Modele.repartition.PER;
 import com.uasz.Gestion_DAOS.Modele.repartition.Vacataire;
 import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
@@ -56,14 +53,9 @@ public class GestionDaosApplication implements CommandLineRunner {
 				"                             \n"
 		);
 		////////////////////////////////////////////////////////////////////////////////
-		for (int i = 0; i < 5; i++) {
-			ueService.ajouterUE(new UE(null, "Libelle "+ i, "Code " + i, i, i, null, new Date(System.currentTimeMillis()), null, null, null));
-			
-		}
 		///////////////////////////////////////////////////////////////////////////////
-		for (int i = 0; i < 5; i++) {
-		ecService.ajouterEC(new EC(null, "libelle " + i, "Code " + i, i, i, i, i, i, null, null, null, null));
-		}
+		
+		
 		System.out.println("----------------------------------------------------------------");
 //
 			List<PER> listPer = new ArrayList<PER>();
