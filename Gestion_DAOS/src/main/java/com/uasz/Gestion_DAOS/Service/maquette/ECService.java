@@ -48,4 +48,19 @@ public class ECService {
     public void supprimerEC(EC ec){
         ecRepository.delete(ec);
     }
+
+    public EC ajouter_ec( EC ec){
+        ec.setDateCreationEC(new Date(System.currentTimeMillis()));
+        return ecRepository.save(ec);
+    }
+
+    public EC modifier_ec(EC ec, Long id){
+        ec.setIdEC(id);
+        return ecRepository.save(ec);
+    }
+
+    public void supprimer_ec(Long id){
+        ecRepository.deleteById(id);
+    }
+
 }
