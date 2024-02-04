@@ -42,4 +42,18 @@ public class FormationService {
     public void supprimerFormation(Formation f){
         fRepository.delete(f);
     }
+
+    public Formation ajouter_formation( Formation f){
+        f.setDateCreationFormation(new Date(System.currentTimeMillis()));
+        return fRepository.save(f);
+    }
+
+    public Formation modifier_formation(Formation f, Long id){
+        f.setIdFormation(id);
+        return fRepository.save(f);
+    }
+
+    public void supprimer_formation(Long id){
+        fRepository.deleteById(id);
+    }
 }

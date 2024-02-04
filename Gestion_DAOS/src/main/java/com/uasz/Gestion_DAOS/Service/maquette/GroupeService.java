@@ -44,4 +44,18 @@ public class GroupeService {
     public void supprimerGroupe(Groupe g){
         gRepository.delete(g);
     }
+
+    public Groupe ajouter_groupe( Groupe g){
+        g.setDateCreationGroupe(new Date(System.currentTimeMillis()));
+        return gRepository.save(g);
+    }
+
+    public Groupe modifier_groupe(Groupe g, Long id){
+        g.setIdGroupe(id);
+        return gRepository.save(g);
+    }
+
+    public void supprimer_groupe(Long id){
+        gRepository.deleteById(id);
+    }
 }

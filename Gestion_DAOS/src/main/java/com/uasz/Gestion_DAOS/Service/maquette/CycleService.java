@@ -41,5 +41,20 @@ public class CycleService {
     public void supprimerCycle(Cycle c){
         cRepository.delete(c);
     }
+
+    public Cycle ajouter_cycle(Cycle c){
+        c.setDateCreationCycle(new Date(System.currentTimeMillis()));
+        return cRepository.save(c);
+    }
+    
+    public Cycle modifier_cycle(Long id, Cycle c){
+        c.setIdCycle(id);
+        return cRepository.save(c);
+    }
+
+    public void supprimer_cycle(Long id){
+        cRepository.deleteById(id);
+    }
+
 }
 

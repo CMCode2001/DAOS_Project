@@ -42,5 +42,19 @@ public class ClasseService {
     public void supprimerClasse(Classe c){
         cRepository.delete(c);
     }
+
+    public Classe ajouter_classe(Classe c){
+        c.setDateCreationClasse(new Date(System.currentTimeMillis()));
+        return cRepository.save(c);
+    }
+    
+    public Classe modifier_classe(Long id, Classe c){
+        c.setIdClasse(id);
+        return cRepository.save(c);
+    }
+
+    public void supprimer_classe(Long id){
+        cRepository.deleteById(id);
+    }
     
 }

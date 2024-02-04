@@ -4,10 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Semestre;
 import com.uasz.Gestion_DAOS.Repository.maquette.SemestreRepository;
 
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+
+@Service
+@Transactional
+@AllArgsConstructor
 public class SemestreService {
     @Autowired
     private SemestreRepository sRepository;
@@ -34,5 +41,19 @@ public class SemestreService {
 
     public void supprimerSemestre(Semestre s){
         sRepository.delete(s);
+    }
+
+    public Semestre ajouter_semestre(Semestre s){
+        s.setDateCreationSemestre(new Date(System.currentTimeMillis()));
+        return sRepository.save(s);
+    }
+
+    public Semestre modifier_semestre(Long id, Semestre s){
+        s.setIdSemestre(id);
+        return sRepository.save(s);
+    }
+
+    public void supprimer_semestre( Long id){
+        sRepository.deleteById(id);
     }
 }
