@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" href="../static/css/buttons.dataTables.min.css" th:href="@{/css/buttons.dataTables.min.css}" />
+    <link rel="stylesheet" href="../static/css/jquery.dataTables.min.css" th:href="@{/css/jquery.dataTables.min.css}" />
+
+
+    <script src="../static/js/jquery-3.7.0.js" th:src="@{/js/jquery-3.7.0.js}"></script>
+    <script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="../static/js/dataTables.buttons.min.js" th:src="@{/js/dataTables.buttons.min.js}"></script>
+    <script src="../static/js/jquery.dataTables.min.js" th:src="@{/js/jquery.dataTables.min.js}"></script>
+    
+    <title>Page formation</title>
+
+</head>
+<body>
+    <h3 style="text-align: center;">Liste des Formations</h3>
+    <div class="row" style="padding: 10px 0;">
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#form_Ajouter_Formation">
+                Ajouter Formation
+            </button>
+        </div>
+    </div>
+        <!-- Boite Modal pour ajouter UE-->
+    <div data-dismiss="modal">
+        <div class="modal fade" id="form_Ajouter_Formation">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!--modal Header-->
+                    <div class="modal-header panel-heading">
+                        <h4 class="modal-header" >
+                            Ajouter une formation
+                        </h4>
+                    </div>
+                    <!---Modal Body-->
+                    <form th:action="@{ajouter_formation}" method="post">
+                    <div class="modal-body">
+
+                        <div>
+                            <label for="libelleFormation">Libelle</label>
+                            <input type="text" class="form-control" id="libelleFormation" name="libelleFormation" required />
+                        </div>
+
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit">Ajouter </button>
+                    </div>
+                    
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Debut Lister de UEs-->
+    <div class="table-responsive" style="margin-left: 20px; margin-right: 20px;">
+        <table class="table table-bordered table-striped" id="table_UE">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Libelle</th>
+                    <th colspan="2">Operations</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p:${listeDesFormations}">
+                    <td th:text="${p.idFormation}"></td>
+                    <td th:text="${p.libelleFormation}"></td>
+                    <td>
+                        <button  
+                            class="btn btn-danger btn-sm"
+                            data-title="Delete"
+                            data-toggle="modal"
+                            th:attr="data-target='#form_Supprimer_Formation'+${p.idFormation}">
+                            Delete
+                        </button> 
+
+                    </td>
+                    <td>
+                        <button
+                            class="btn btn-info btn-sm"
+                            data-title="Edit"
+                            data-toggle="modal"
+                            th:attr="data-target='#form_Modifier_Formation'+${p.idFormation}"
+                        >
+                            Modifier
+                            
+                        </button>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" th:href="@{/details_formation(id=${p.idFormation})}">voir</a>
+                    </td>
+
+
+                    <!--Boite modal pour supprimer UE-->
+                    <div data-dismiss="modal" >
+                        <div class="modal fade" th:attr="id='form_Supprimer_Formation'+${p.idFormation}">
+                            <div class="modal-dialog">
+                                <div class="modal-content panel-info">
+                                    <!--modal Header-->
+                                    <div class="modal-header panel-heading">
+                                        <h4 class="modal-header" style="text-align: center;">
+                                            Supprimer une Formation
+                                        </h4>
+                                    </div>
+                                    <!---Modal Body-->
+                                    <form th:action="@{/supprimer_formation}" method="post">
+                                        <div class="modal-body">
+                                            <div style="display: none;">
+                                                <input type="text" name="idFormation" id="idFormation" th:value="${p.idFormation}">
+                                            </div>                                 
+                                            <div style="display: none;">
+                                                <input type="text" class="form-control" id="libelleFormation" name="libelleFormation" th:value="${p.libelleFormation}" />
+                                            </div>
+                                            <p>Supprimer la formation <span th:text="${p.idFormation}"></span></p>
+                                        </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-primary" type="submit" onclick="return confirm('Etes vous sure?')">Supprimer</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Modifier formation -->
+                    <div data-dismiss="modal" >
+                        <div class="modal fade" th:attr="id='form_Modifier_Formation'+${p.idFormation}">
+                            <div class="modal-dialog">
+                                <div class="modal-content panel-info">
+                                    <!--modal Header-->
+                                    <div class="modal-header panel-heading">
+                                        <h4 class="modal-header" style="text-align: center;">
+                                            Modifier une Formation
+                                        </h4>
+                                    </div>
+                                    <!---Modal Body-->
+                                    <form th:action="@{/modifier_formation}" method="post">
+                                    <div class="modal-body">
+                                        <div style="display: none;">
+                                            <input type="text" name="idFormation" id="idFormation" th:value="${p.idFormation}">
+                                        </div>
+                                        <div>
+                                            <label for="libelleFormation">Libelle</label>
+                                            <input type="text" class="form-control" id="libelleFormation" name="libelleFormation" th:value="${p.libelleFormation}" />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-primary" type="submit">Modifier</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#table_UE").DataTable({
+                "lengthMenu": [10, 25, 50, 75, 100], // Set the entries per page options
+                "searching": true
+            });
+        })
+    </script>
+</body>
+</html>
