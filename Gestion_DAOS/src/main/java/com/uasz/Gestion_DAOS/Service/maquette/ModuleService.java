@@ -45,4 +45,18 @@ public class ModuleService {
     public void supprimerModule(Module m){
         mRepository.delete(m);
     }
+
+    public Module ajouter_module(Module m){
+        m.setDateCreationModule(new Date(System.currentTimeMillis()));
+        return mRepository.save(m);
+    }
+
+    public Module modifier_module(Module m, Long id){
+        m.setIdModule(id);
+        return mRepository.save(m);
+    }
+
+    public void supprimer_module(Long id){
+        mRepository.deleteById(id);
+    }
 }

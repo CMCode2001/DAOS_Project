@@ -42,4 +42,19 @@ public class FiliereService {
     public void supprimerFiliere(Filiere f){
         fRepository.delete(f);
     }
+    
+    public Filiere ajouter_filiere( Filiere f){
+        f.setDateCreationFiliere(new Date(System.currentTimeMillis()));
+        return fRepository.save(f);
+    }
+
+    public Filiere modifier_filiere(Filiere f, Long id){
+        f.setIdFiliere(id);
+        return fRepository.save(f);
+    }
+
+    public void supprimer_filiere(Long id){
+        fRepository.deleteById(id);
+    }
+
 }

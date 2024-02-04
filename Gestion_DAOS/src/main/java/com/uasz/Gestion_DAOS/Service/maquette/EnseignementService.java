@@ -42,4 +42,19 @@ public class EnseignementService {
     public void supprimerEnseignement(Enseignement ens){
         eRepository.delete(ens);
     }
+
+    public Enseignement ajouter_enseignement( Enseignement e){
+        e.setDateCreationEnseignement(new Date(System.currentTimeMillis()));
+        return eRepository.save(e);
+    }
+
+    public Enseignement modifier_enseignement(Enseignement e, Long id){
+        e.setIdEnseignement(id);
+        return eRepository.save(e);
+    }
+
+    public void supprimer_enseignement(Long id){
+        eRepository.deleteById(id);
+    }
+
 }

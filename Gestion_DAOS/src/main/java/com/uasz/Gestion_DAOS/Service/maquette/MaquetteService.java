@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.Service.maquette;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,9 @@ public class MaquetteService {
     @Autowired
     private MaquetteRepository mRepository;
 
-    public void ajouterMaquette(Maquette f){
-        mRepository.save(f);
+    public void ajouterMaquette(Maquette m){
+        m.setDateCreationMaquette(new Date(System.currentTimeMillis()));
+        mRepository.save(m);
     }
 
     public List<Maquette> rechercherMaquettes(){
@@ -39,5 +41,19 @@ public class MaquetteService {
 
     public void supprimerMaquette(Long idMaq){
         mRepository.delete(rechercherUneMaquette(idMaq));
+    }
+
+    public Maquette ajouter_maquette( Maquette m ){
+        m.setDateCreationMaquette(new Date(System.currentTimeMillis()));
+        return mRepository.save(m);
+    }
+
+    public Maquette modifier_maquette(Maquette m , Long id){
+        m.setIdMaquette(id);
+        return mRepository.save(m);
+    }
+
+    public void supprimer_maquette(Long id){
+        mRepository.deleteById(id);
     }
 }

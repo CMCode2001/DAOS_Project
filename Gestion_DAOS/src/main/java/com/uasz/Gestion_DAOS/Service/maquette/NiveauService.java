@@ -42,4 +42,18 @@ public class NiveauService {
     public void supprimerNiveau(Niveau n){
         nRepository.delete(n);
     }
+
+    public Niveau ajouter_niveau(Niveau n){
+        n.setDateCreationNiveau(new Date(System.currentTimeMillis()));
+        return nRepository.save(n);
+    }
+
+    public Niveau modifier_niveau(Niveau n, Long id){
+        n.setIdNiveau(id);
+        return nRepository.save(n);
+    }
+
+    public void supprimer_niveau(Long id){
+        nRepository.deleteById(id);
+    }
 }
