@@ -1,6 +1,7 @@
 import './App.css';
-import NavbarComp from './NavbarComp';
-import UE from './components/UE';
+import NavbarComp from './Components/NavbarComp';
+import UE from './Pages/UE';
+
 
 function App() {
   return (
