@@ -32,7 +32,7 @@ public class BatimentController {
 
     @RequestMapping(value = "/ajouter_batiment", method = RequestMethod.POST)
     public String ajouterBat(Model model, Batiment batiment){
-        batimentService.ajouterVac(batiment);
+        batimentService.ajouter_Batiment(batiment);
         return "redirect:/batiment";
     }
 }

@@ -1,7 +1,7 @@
 package com.uasz.Gestion_DAOS.Modele.emploi;
 
-import java.util.Date;
 
+import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,12 +25,11 @@ public class Deroulement {
     private String objectifsDeroulement;
     private String descriptionDeroulement;
     @Temporal(TemporalType.DATE)
-    private Date dataCreationDeroulement;
+    private Date dateCreationDeroulement;
 
     /**
      * Representation de la relation Seance-Deroulement
      */
     @OneToOne
-    @JoinColumn(name = "seance")
-    private Seance seance;
+    private Seance seance ;
 }
