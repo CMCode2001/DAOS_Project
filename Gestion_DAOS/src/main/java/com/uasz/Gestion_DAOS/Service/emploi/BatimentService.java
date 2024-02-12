@@ -25,7 +25,7 @@ public class BatimentService {
      * @param batiment
      * @return batiment
      */
-    public Batiment ajouterVac(Batiment batiment){
+    public Batiment ajouterBat(Batiment batiment){
         batiment.setDateCreationBatiment(new Date(System.currentTimeMillis()));
         return batimentRepository.save(batiment);
 
@@ -61,13 +61,35 @@ public class BatimentService {
         batModif.setDescriptionBatiment(batiment.getDescriptionBatiment());
         return batimentRepository.save(batModif);
     }
+    // 
+    public Batiment modifier_Batiment(Batiment batiment, Long idBat){
+        batiment.setIdBatiment(idBat);
+        return batimentRepository.save(batiment);
+    }
+    // 
     /**
      * Methode permettant de supprimer un Batiment;
      *
      * @param idBatiment
      * @return
      */
+
+
     public void deleteBat(Batiment batiment){
         batimentRepository.delete(batiment);
+    }
+
+    public void supprimer_Batiment(Long idBat){
+        batimentRepository.deleteById(idBat);
+    }
+    
+    public Batiment ajouter_Batiment(Batiment batiment){
+        Batiment savedBat = batimentRepository.save(batiment);
+        savedBat.setDateCreationBatiment(new Date(System.currentTimeMillis()));
+        return batimentRepository.save(savedBat);
+    }
+
+    public Batiment recherche_Batiment(Long idBat) {
+      return batimentRepository.findById(idBat).get();
     }
 }
