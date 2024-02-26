@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GestionDaosApplication<Gestion_DAOS>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uasz.Gestion_DAOS.GestionDaosApplication",
+            "projectName": "Gestion_DAOS",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 @Controller
-@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
 public class VacataireController {
@@ -24,19 +23,19 @@ public class VacataireController {
 
     @RequestMapping(value = "/vacataire", method = RequestMethod.GET)
     public String listerPer(Model model){
-        List<Vacataire> vacataireList = vacataireService.listerToutVacataire();
+        List<Vacataire> vacataireList = vacataireService.lister_vacataires();
         model.addAttribute("listeDesVacataires", vacataireList);
         return "vacataire";
     }
 
     @RequestMapping(value = "/ajouter_vacataire", method = RequestMethod.POST)
     public String ajouterPer(Model model, Vacataire vacataire){
-        vacataireService.ajouterVac(vacataire);
+        vacataireService.ajouter_vacataire(vacataire);
         return "redirect:/vacataire";
     }
     @GetMapping(value="/deleteVac/{id}")
     public String deletePER (@PathVariable Long id){
-        vacataireService.deleteVac(id );
+        vacataireService.supprimer_vacataire(id );
         return "redirect:/vacataire";
     }
 }

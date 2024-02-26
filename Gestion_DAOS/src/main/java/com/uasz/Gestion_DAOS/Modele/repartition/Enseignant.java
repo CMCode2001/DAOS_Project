@@ -33,6 +33,6 @@ public class Enseignant {
     @Temporal(TemporalType.DATE)
     private Date dateCreationEns;
 
-    @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
     private List<Repartition> repartitions;
 }
