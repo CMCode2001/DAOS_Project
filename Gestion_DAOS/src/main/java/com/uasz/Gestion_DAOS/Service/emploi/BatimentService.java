@@ -11,11 +11,11 @@ import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
 import com.uasz.Gestion_DAOS.Repository.emploi.BatimentRepository;
 
 import jakarta.transaction.Transactional;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 
 @Service
 @Transactional
-@Data
+@AllArgsConstructor
 public class BatimentService {
     @Autowired
     private BatimentRepository batimentRepository;

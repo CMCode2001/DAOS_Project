@@ -9,11 +9,12 @@ import com.uasz.Gestion_DAOS.Modele.emploi.Deroulement;
 import com.uasz.Gestion_DAOS.Repository.emploi.DeroulementRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Service
 @Transactional
-@Data
+@AllArgsConstructor
 public class DeroulementService {
     @Autowired
     private DeroulementRepository deroulementRepository;

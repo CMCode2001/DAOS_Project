@@ -28,7 +28,7 @@ public class SalleService {
 
     //MODIFIER
     public Salle modifier_Salle(Salle salle, Long idSalle){
-        //Salle.setIdSalle(idSalle);
+        salle.setIdSalle(idSalle);
         return salleRepository.save(idSalle);
     }
 

@@ -28,9 +28,9 @@ public class SeanceService {
     }
 
     //MODIFIER
-    public Seance modifier_Seance(Seance Seance, Long idSeance){
-        Seance.setIdSeance(idSeance);
-        return seanceRepository.save(Seance);
+    public Seance modifier_Seance(Seance seance, Long idSeance){
+        seance.setIdSeance(idSeance);
+        return seanceRepository.save(seance);
     }
 
     //RECHERCHER

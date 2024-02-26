@@ -22,7 +22,7 @@ public class EnseignantController {
 
     @RequestMapping(value = "/enseignant", method = RequestMethod.GET)
     public String listerEnseignant(Model model){
-        List<Enseignant> enseignantList = enseignantService.listerToutEnseignant();
+        List<Enseignant> enseignantList = enseignantService.lister_enseignant();
         model.addAttribute("listeDesEnseignants", enseignantList);
         return "enseignant";
 

@@ -40,8 +40,8 @@ public class PerService {
      * @param idPer
      * @return {@code Optional} contenant le PER trouve, ou {@code Optional.empty()} si aucun PER est trouve;
      */
-    public Optional<PER> searchPer(Long idPer){
-        return perRepository.findById(idPer);
+    public PER searchPer(Long idPer){
+        return perRepository.findById(idPer).get();
     }
 
     /**
@@ -50,19 +50,13 @@ public class PerService {
      * @return {@Code PER} la nouvelle PER modifier ou, {@code new RuntimeException()} si l'PER n'existe pas
      */
     public PER modifierEns(PER per){
-        Optional<PER> perModif = searchPer(per.getIdEns());
-        if(perModif.isPresent()) {
-            perModif.orElseThrow().setMatriculePer(per.getMatriculePer());
-            perModif.orElseThrow().setNomEns(per.getNomEns());
-            perModif.orElseThrow().setPrenomEns(per.getPrenomEns());
-            perModif.orElseThrow().setGradeEns(per.getGradeEns());
-            return perRepository.save(perModif.get());
-        }
-        else{
-            // Gérer le cas où l'PER n'est pas trouvée
-            throw new RuntimeException("PER non trouvée avec l'ID : " + per.getMatriculePer());
-        }
-
+        PER perModif = searchPer(per.getIdEns());
+    
+            perModif.setMatriculePer(per.getMatriculePer());
+            perModif.setNomEns(per.getNomEns());
+            perModif.setPrenomEns(per.getPrenomEns());
+            perModif.setGradeEns(per.getGradeEns());
+            return perRepository.save(perModif);
     }
     /**
      * Methode permettant de supprimer un PER;
@@ -72,6 +66,11 @@ public class PerService {
      */
     public void deletePer(Long id){
         perRepository.deleteById(id);
+    }
+
+    public PER modifier_per(PER p, Long id){
+        p.setIdEns(id);
+        return perRepository.save(p);
     }
     
 }
