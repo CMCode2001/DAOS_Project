@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.repartition;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
@@ -24,6 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", length=3)
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Enseignant {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long idEns;

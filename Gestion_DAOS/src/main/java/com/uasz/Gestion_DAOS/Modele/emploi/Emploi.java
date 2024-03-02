@@ -34,7 +34,7 @@ public class Emploi {
     /**
      * Representation de relation Emploi-seance
      */
-    @OneToMany(mappedBy = "emploi", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "emploi", cascade = CascadeType.ALL)
     private List<Seance> seances;
     
 }

@@ -34,6 +34,6 @@ public class Batiment {
     /**
      * Representation de la relation Batiment-Salle
      */
-    @OneToMany(mappedBy = "batiment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "batiment", cascade = CascadeType.ALL)
     private List<Salle> salles = new ArrayList<>();
 }

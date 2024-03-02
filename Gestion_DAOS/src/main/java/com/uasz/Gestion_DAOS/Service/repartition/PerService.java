@@ -7,6 +7,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class PerService {
      * @return per
      */
     public PER ajouterPer(PER per){
+        per.setDateCreationEns(new Date(System.currentTimeMillis()));
         return perRepository.save(per);
 
     }
