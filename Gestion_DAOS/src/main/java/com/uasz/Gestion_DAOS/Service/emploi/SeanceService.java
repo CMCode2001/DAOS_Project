@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
-import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Repository.emploi.SeanceRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Service
 @Transactional
-@Data
+@AllArgsConstructor
 public class SeanceService {
      @Autowired
     private SeanceRepository seanceRepository ;

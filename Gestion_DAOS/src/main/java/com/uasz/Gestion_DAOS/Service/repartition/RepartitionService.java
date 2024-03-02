@@ -18,12 +18,16 @@ public class RepartitionService {
       @Autowired
     private RepartitionRepository repository;
 
-    public void ajouterRepartition(Repartition r ){
+    // public void ajouterRepartition(Repartition r ){
+    //     r.setDateCreationRepartition(new Date(System.currentTimeMillis()));
+    //     repository.save(r);
+
+    // }
+    public Repartition ajouter_repartition(Repartition r){
         r.setDateCreationRepartition(new Date(System.currentTimeMillis()));
-        repository.save(r);
-
+        return repository.save(r);
     }
-
+    
     public List<Repartition> listerToutRepartition(){
         return repository.findAll();
     }
@@ -42,10 +46,6 @@ public class RepartitionService {
         repository.delete(r);
     }
 
-    public Repartition ajouter_repartition(Repartition r){
-        r.setDateCreationRepartition(new Date(System.currentTimeMillis()));
-        return repository.save(r);
-    }
 
     public Repartition modifier_repartition(Repartition r, Long id){
         r.setIdRepartition(id);

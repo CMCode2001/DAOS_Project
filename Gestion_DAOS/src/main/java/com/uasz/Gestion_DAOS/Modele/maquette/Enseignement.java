@@ -55,7 +55,7 @@ public class Enseignement {
     @JoinColumn(name = "module")
     private Module module;
 
-    @OneToMany(mappedBy = "enseignement", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "enseignement", cascade = CascadeType.ALL)
     private List<Repartition> repartitions;
 
 }

@@ -2,6 +2,8 @@ package com.uasz.Gestion_DAOS.Modele.emploi;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.uasz.Gestion_DAOS.Modele.Constante.Jour;
 import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
 
@@ -22,6 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +37,7 @@ public class Seance {
     /**
      * Representation de la relation Salle-Seance
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "salle")
     private Salle salle;
@@ -47,10 +51,12 @@ public class Seance {
     /**
      * Representation de la relation Emploi-Seance
      */
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "emploi", nullable = false)
+    @JoinColumn(name = "emploi")
     private Emploi emploi;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "repartition")
     private Repartition repartition;

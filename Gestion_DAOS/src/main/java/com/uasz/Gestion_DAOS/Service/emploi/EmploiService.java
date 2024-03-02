@@ -22,6 +22,8 @@ public class EmploiService {
     //AJOUTER 
     public Emploi ajouter_emploi(Emploi e){
         e.setDateCreationEmploi(new Date(System.currentTimeMillis()));
+        e.setDateDebutEmploi(new Date(System.currentTimeMillis()));
+        e.setDateFinEmploi(new Date(System.currentTimeMillis()));
         return repository.save(e);
     }
 

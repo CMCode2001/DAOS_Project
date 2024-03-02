@@ -1,5 +1,6 @@
 package com.uasz.Gestion_DAOS.RestController.emploi;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,16 @@ public class SeanceRestController {
 
     //POST
     @PostMapping
-    public Seance ajouter_Seance(@RequestBody Seance Seance){
-        return seanceService.ajouter_Seance(Seance);
+    public Seance ajouter_Seance(@RequestBody Seance seance){
+        seance.setDateCreationSeance(new Date(System.currentTimeMillis()));
+        return seanceService.ajouter_Seance(seance);
     }
 
 
     //PUT
      @PutMapping(path = "/{id}")
-    public Seance modifier_Seance(@RequestBody Seance Seance, @PathVariable Long idBat){
-        return seanceService.modifier_Seance(Seance,idBat);
+    public Seance modifier_Seance(@RequestBody Seance seance, @PathVariable Long idBat){
+        return seanceService.modifier_Seance(seance,idBat);
     }
 
 
