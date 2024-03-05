@@ -19,6 +19,7 @@ import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Service.maquette.UEService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -68,14 +69,13 @@ public class UERestController {
         return ueService.afficherModulesUE(ue);
     }
     
+
     @PostMapping("/{id}/ecs")
-    public ResponseEntity<String> ajouterECdansUE(@PathVariable("id") Long id, @RequestBody EC ec) {
-        try {
-            UE ue = ueService.rechercherUE(id); 
-            ueService.ajouterECdansUE(ec, ue);
-            return ResponseEntity.ok("EC ajouté avec succès dans l'UE " + id);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'ajout de l'EC dans l'UE.");
-        }
+    @ResponseStatus(HttpStatus.OK)
+    public EC ajouterECdansUE(@PathVariable("id") Long id, @RequestBody EC ec) {
+        UE ue = ueService.rechercherUE(id); 
+        ueService.ajouterECdansUE(ec, ue);
+        return ec;
     }
+
 }
