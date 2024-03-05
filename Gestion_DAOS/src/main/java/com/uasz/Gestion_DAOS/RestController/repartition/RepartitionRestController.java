@@ -3,6 +3,7 @@ package com.uasz.Gestion_DAOS.RestController.repartition;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
+import com.uasz.Gestion_DAOS.Modele.repartition.Enseignant;
 import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
+import com.uasz.Gestion_DAOS.Modele.repartition.Vacataire;
 import com.uasz.Gestion_DAOS.Service.repartition.RepartitionService;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
@@ -49,5 +56,14 @@ public class RepartitionRestController {
     public void supprimer_repartition(@PathVariable Long id){
         rService.supprimer_repartition(id);
     }
+
+    /*@PostMapping("/{id}/vacataires")
+    @ResponseStatus(HttpStatus.OK)
+    public Enseignant ajouter_vacataire_repartition(@PathVariable("id") Long id, @RequestBody Vacataire v) {
+        Repartition r = rService.rechercherRepartition(id);
+        rService.ajouterEnseignantVacataireARepartition(r, v);
+        return v;
+    }
+    */
     
 }

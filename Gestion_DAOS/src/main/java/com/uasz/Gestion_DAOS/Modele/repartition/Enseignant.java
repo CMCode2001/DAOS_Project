@@ -40,5 +40,5 @@ public class Enseignant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
-    private List<Repartition> repartitions;
+    List<Repartition> repartitions;
 }
