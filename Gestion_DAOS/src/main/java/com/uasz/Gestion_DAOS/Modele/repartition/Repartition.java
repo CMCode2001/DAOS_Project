@@ -38,7 +38,6 @@ public class Repartition {
 
     @ManyToOne
     @JsonIgnore
-
     @JoinColumn(name = "enseignement")
     private Enseignement enseignement;
 

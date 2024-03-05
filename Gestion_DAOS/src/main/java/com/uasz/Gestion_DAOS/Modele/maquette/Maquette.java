@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.maquette;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Maquette {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +44,7 @@ public class Maquette {
     /**
      * Representation de la relation Maquette-module;
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "maquette")
     private List<Module> modules;
 

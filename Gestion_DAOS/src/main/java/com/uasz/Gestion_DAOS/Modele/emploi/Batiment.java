@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Batiment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +38,7 @@ public class Batiment {
     /**
      * Representation de la relation Batiment-Salle
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "batiment", cascade = CascadeType.ALL)
     private List<Salle> salles = new ArrayList<>();
 }

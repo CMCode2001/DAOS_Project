@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type", length=3)
 //@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Enseignant {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long idEns;
@@ -37,6 +38,7 @@ public class Enseignant {
     @Temporal(TemporalType.DATE)
     private Date dateCreationEns;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL)
     private List<Repartition> repartitions;
 }

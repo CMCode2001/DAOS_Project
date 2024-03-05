@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.maquette;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Module {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idModule;
@@ -33,6 +37,7 @@ public class Module {
     /**
     * Representation de la relation Semestre-Module;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "semestre")
     private Semestre semestre;
@@ -40,12 +45,14 @@ public class Module {
     /**
      * Representation de la relation Module-Enseignement;
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "module")
     private List<Enseignement> enseignements;
 
     /**
      * Representation de la relation Maquette-Module;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "maquette")
     private Maquette maquette;
@@ -53,6 +60,7 @@ public class Module {
     /**
      * Representation de la relation UE-Module;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ue")
     private UE ue;
@@ -60,6 +68,7 @@ public class Module {
     /**
      * Representation de la relation Module-EC;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="ec")
     private EC ec;
