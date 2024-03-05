@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
 import com.uasz.Gestion_DAOS.Service.maquette.ClasseService;
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+
 @RestController
 @RequestMapping(path = "/maquette/classe")
 public class ClasseRestController {

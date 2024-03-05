@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+import com.uasz.Gestion_DAOS.Repository.maquette.ECRepository;
 import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
 
 import jakarta.transaction.Transactional;
@@ -20,6 +21,9 @@ import lombok.AllArgsConstructor;
 public class UEService {
     @Autowired
     private UERepository ueRepository;
+
+    @Autowired
+    private ECService ecService;
 
     public void ajouterUE(UE ue){
         UE savedUE = ueRepository.save(ue);
@@ -50,8 +54,13 @@ public class UEService {
         ueRepository.delete(ue);
     }
 
-    public List<EC> afficherLesECs(UE ue){
+    /*public List<EC> afficherLesECs(UE ue){
         return ueRepository.findByUE(ue);
+    }*/
+
+    public List<EC> afficherLesECs(Long id){
+       UE ue =  rechercherUE(id);
+       return ue.getEcs();
     }
 
     public UE modifier_UE(UE ue, Long id){
@@ -69,4 +78,14 @@ public class UEService {
         return ueRepository.save(savedUE);
     }
 
+    public List<Module> afficherModulesUE(UE ue){
+        return ueRepository.findByUEModules(ue);
+    }
+
+
+    public void ajouterECdansUE(EC ec, UE ue) {
+        ue.getEcs().add(ec); 
+        ec.setUe(ue); 
+        ecService.ajouterEC(ec);
+    }
 }

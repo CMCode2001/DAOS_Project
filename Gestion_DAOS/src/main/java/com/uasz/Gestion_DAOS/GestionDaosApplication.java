@@ -78,7 +78,7 @@ public class GestionDaosApplication implements CommandLineRunner {
 		///////////////////////////////////////////////////////////////////////////////
 		
 		
-		System.out.println("----------------------------------------------------------------");
+		/*System.out.println("----------------------------------------------------------------");
 //
 			List<PER> listPer = new ArrayList<PER>();
 //
@@ -370,7 +370,7 @@ public class GestionDaosApplication implements CommandLineRunner {
 		// System.out.println("----------------------------------------------------------------");
 
 
-
+		*/
 	}
 
 }
