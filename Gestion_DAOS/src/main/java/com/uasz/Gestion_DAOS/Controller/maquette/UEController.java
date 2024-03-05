@@ -47,14 +47,14 @@ public class UEController {
         return "redirect:/ue";   
     }
 
-    @GetMapping("/details_ue")
+   /*  @GetMapping("/details_ue")
     public String details_ue(Model model, @RequestParam("id") Long id){
         UE ue = ueService.rechercherUE(id);
         List<EC> ecList = ueService.afficherLesECs(ue);
         model.addAttribute("ue", ue);
         model.addAttribute("listeDesEC", ecList);
         return "ue_details";
-    }
+    }*/
 
     
 }

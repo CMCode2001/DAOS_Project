@@ -3,6 +3,8 @@ package com.uasz.Gestion_DAOS.RestController.maquette;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Service.maquette.UEService;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -47,4 +53,29 @@ public class UERestController {
     public void supprimer_ue(@PathVariable Long id){
         ueService.supprimer_UE(id);
     }
+
+   /* @GetMapping(path = "/{id}/ecs")
+    public List<EC> afficher_ue_ecs(UE ue) {
+        return ueService.afficherLesECs(ue);
+    }*/
+
+    @GetMapping("/{id}/ecs")
+    public List<EC> afficherLesECs(@PathVariable("id") Long id) {
+       return ueService.afficherLesECs(id);
+    }
+
+    @GetMapping(path = "/{id}/modules")
+    public List<Module> afficher_ue_modules(UE ue) {
+        return ueService.afficherModulesUE(ue);
+    }
+    
+
+    @PostMapping("/{id}/ecs")
+    @ResponseStatus(HttpStatus.OK)
+    public EC ajouterECdansUE(@PathVariable("id") Long id, @RequestBody EC ec) {
+        UE ue = ueService.rechercherUE(id); 
+        ueService.ajouterECdansUE(ec, ue);
+        return ec;
+    }
+
 }
