@@ -30,7 +30,7 @@ public class Salle {
     private Long idSalle;
     private String libelleSalle;
     private String codeSalle;
-    private int CapaciteSalle;
+    private int capaciteSalle;
     private String descriptionSalle;
     @Temporal(TemporalType.DATE)
     private Date dateCreationSalle;

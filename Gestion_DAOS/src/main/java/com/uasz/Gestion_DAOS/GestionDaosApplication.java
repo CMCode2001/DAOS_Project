@@ -3,6 +3,7 @@ package com.uasz.Gestion_DAOS;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -49,7 +50,6 @@ public class GestionDaosApplication implements CommandLineRunner {
 	private SalleService salleService;
 	@Autowired
 	private SeanceService seanceService;
-
 	@Autowired
 	private BatimentService batimentService;
 	@Autowired
@@ -363,8 +363,44 @@ public class GestionDaosApplication implements CommandLineRunner {
 		repartitionService.ajouter_repartition(repartition4);
 		repartitionService.ajouter_repartition(repartition5);
 
+		System.out.println("----------------------------------------------------------------");
+		// Création d'instances de la classe UE
+		UE ue1 = new UE();
+		ue1.setLibelleUE("Mathématiques");
+		ue1.setCodeUE("MATH101");
+		ue1.setCreditUE(6);
+		ue1.setCoefficientUE(3);
+		ue1.setDescriptionUE("Cours avancé de mathématiques");
 
-		// System.out.println("----------------------------------------------------------------");
+
+		UE ue2 = new UE();
+		ue2.setLibelleUE("Physique");
+		ue2.setCodeUE("PHYS101");
+		ue2.setCreditUE(6);
+		ue2.setCoefficientUE(3);
+		ue2.setDescriptionUE("Cours avancé de physique");
+
+
+		UE ue3 = new UE();
+		ue3.setLibelleUE("Informatique");
+		ue3.setCodeUE("INFO101");
+		ue3.setCreditUE(6);
+		ue3.setCoefficientUE(3);
+		ue3.setDescriptionUE("Cours avancé d'informatique");
+
+
+		UE ue4 = new UE();
+		ue4.setLibelleUE("Chimie");
+		ue4.setCodeUE("CHIM101");
+		ue4.setCreditUE(6);
+		ue4.setCoefficientUE(3);
+		ue4.setDescriptionUE("Cours avancé de chimie");
+
+		ueService.ajouter_UE(ue1);
+		ueService.ajouter_UE(ue2);
+		ueService.ajouter_UE(ue3);
+		ueService.ajouter_UE(ue4);
+
 		// System.out.println("----------------------------------------------------------------");
 		// System.out.println("----------------------------------------------------------------");
 		// System.out.println("----------------------------------------------------------------");

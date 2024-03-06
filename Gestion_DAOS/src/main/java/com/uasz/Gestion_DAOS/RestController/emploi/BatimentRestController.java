@@ -42,8 +42,8 @@ public class BatimentRestController {
     }
 
     @PutMapping(path = "/{id}")
-    public Batiment modifier_Batiment(@RequestBody Batiment batiment, @PathVariable Long idBat){
-        return batimentService.modifier_Batiment(batiment,idBat);
+    public Batiment modifier_Batiment(@RequestBody Batiment batiment, @PathVariable Long id){
+        return batimentService.modifier_Batiment(batiment,id);
     }
 
     @DeleteMapping(path = "/{id}")
