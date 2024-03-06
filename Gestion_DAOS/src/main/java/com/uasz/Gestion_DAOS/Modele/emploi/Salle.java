@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.emploi;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +27,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +42,7 @@ public class Salle {
     /**
      * Representation de la relation entre Batiment-Salle
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "batiment")
     private Batiment batiment;
@@ -45,6 +50,7 @@ public class Salle {
     /**
      * Representation de la relation entre Salle-Seance
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "salle")
     private List<Seance> seances;
 

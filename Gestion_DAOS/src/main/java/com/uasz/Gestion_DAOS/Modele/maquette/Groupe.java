@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.maquette;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Groupe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +38,7 @@ public class Groupe {
     /**
      * Representation de la relation classe-Groupe;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "classe")
     private Classe classe;  
@@ -41,6 +46,7 @@ public class Groupe {
     /**
      * Representation de la relation Groupe-Enseignement;
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "groupe")
     private List<Enseignement> enseignements;
     
