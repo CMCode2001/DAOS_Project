@@ -59,11 +59,6 @@ public class UERestController {
         return ueService.afficherLesECs(ue);
     }*/
 
-    @GetMapping("/{id}/ecs")
-    public List<EC> afficherLesECs(@PathVariable("id") Long id) {
-       return ueService.afficherLesECs(id);
-    }
-
     @GetMapping(path = "/{id}/modules")
     public List<Module> afficher_ue_modules(UE ue) {
         return ueService.afficherModulesUE(ue);
@@ -76,6 +71,11 @@ public class UERestController {
         UE ue = ueService.rechercherUE(id); 
         ueService.ajouterECdansUE(ec, ue);
         return ec;
+    }
+
+    @GetMapping("/{id}/ecs")
+    public List<EC> afficherLesECs(@PathVariable("id") Long id) {
+       return ueService.afficherLesECs(id);
     }
 
 }
