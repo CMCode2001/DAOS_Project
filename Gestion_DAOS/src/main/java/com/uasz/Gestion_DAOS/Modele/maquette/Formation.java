@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.maquette;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +44,14 @@ public class Formation {
     /**
     * Representation de la relation Filiere-Formation;
     */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "filiere")
     private Filiere filiere;
     /** 
     * Representation de la relation Formation-Niveau;
     */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name= "niveau")
     private Niveau niveau;
@@ -53,7 +59,7 @@ public class Formation {
     /**
      * Representation de la relation Formation-Classe;
      */
-
+    @JsonIgnore
     @OneToMany(mappedBy = "formation")
     private List<Classe> classes;
 

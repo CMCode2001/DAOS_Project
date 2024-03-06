@@ -3,6 +3,9 @@ package com.uasz.Gestion_DAOS.Modele.maquette;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cycle {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCycle;
@@ -26,6 +30,7 @@ public class Cycle {
     @Temporal(TemporalType.DATE)
     private Date dateCreationCycle;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cycle")
     private List<Niveau> niveaux;
 

@@ -3,6 +3,8 @@ package com.uasz.Gestion_DAOS.Modele.maquette;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
 
 import jakarta.persistence.CascadeType;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Enseignement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +40,7 @@ public class Enseignement {
     /**
      * Representation de la relation classe-Enseignement;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "classe")
     private Classe classe;
@@ -44,6 +48,7 @@ public class Enseignement {
     /**
      * Representation de la relation Groupe-Enseignement;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "groupe")
     private Groupe groupe;
@@ -51,10 +56,12 @@ public class Enseignement {
     /**
      * Representation de la relation Module-Enseignement;
      */
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "module")
     private Module module;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "enseignement", cascade = CascadeType.ALL)
     private List<Repartition> repartitions;
 
