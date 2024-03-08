@@ -47,8 +47,8 @@ public class DeroulementRestContoller {
 
     //PUT
      @PutMapping(path = "/{id}")
-    public Deroulement modifier_Deroulement(@RequestBody Deroulement Deroulement, @PathVariable Long idBat){
-        return deroulementService.modifier_Deroulement(Deroulement,idBat);
+    public Deroulement modifier_Deroulement(@RequestBody Deroulement Deroulement, @PathVariable Long id){
+        return deroulementService.modifier_Deroulement(Deroulement,id);
     }
 
 

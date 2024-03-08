@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
 import com.uasz.Gestion_DAOS.Modele.emploi.Salle;
-import com.uasz.Gestion_DAOS.Modele.maquette.EC;
-import com.uasz.Gestion_DAOS.Modele.maquette.UE;
+
+
 import com.uasz.Gestion_DAOS.Service.emploi.BatimentService;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class BatimentRestController {
         batimentService.supprimer_Batiment(id);
     }
 
-     @PostMapping("/{id}/salles")
+    @PostMapping(path ="/{id}/salles")
     @ResponseStatus(HttpStatus.OK)
     public Salle ajouterSalleDansBatiment (@PathVariable("id") Long id, @RequestBody Salle s) {
         Batiment b = batimentService.recherche_Batiment(id);

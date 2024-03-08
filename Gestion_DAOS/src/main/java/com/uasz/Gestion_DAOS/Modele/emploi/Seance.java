@@ -31,7 +31,7 @@ public class Seance {
     private Long idSeance;
     private Jour jourSeance;
     private int dureeSeance;
-    private int debutSeance, finSeance, numeroSeance;
+        private int debutSeance, finSeance, numeroSeance;
     @Temporal(TemporalType.DATE)
     private Date dateCreationSeance;
     /**
