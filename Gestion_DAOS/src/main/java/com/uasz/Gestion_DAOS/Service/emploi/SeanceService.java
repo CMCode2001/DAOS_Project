@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Salle;
 import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Repository.emploi.SeanceRepository;
 
@@ -45,5 +46,14 @@ public class SeanceService {
     //LISTER TOUT ATTRIBUT
     public List<Seance> listerToutSeance() {
        return seanceRepository.findAll();
+    }
+
+    public Seance updatSeance(Seance s){
+        return seanceRepository.save(s);
+    }
+
+    public Salle salle_assigner(Long id){
+        Seance s = recherche_Seance(id);
+        return s.getSalle();
     }
 }

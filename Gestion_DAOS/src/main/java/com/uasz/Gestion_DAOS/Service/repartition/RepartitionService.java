@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Modele.repartition.Enseignant;
 import com.uasz.Gestion_DAOS.Modele.repartition.PER;
 import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
@@ -72,22 +73,11 @@ public class RepartitionService {
         repository.deleteById(id);
     }
 
-   /* //ajouter un enseignant dans un reppartition
-    public void ajouterEnseignantPerARepartition(Repartition r, PER p){
-        r.setEnseignant(p);
-        p.getRepartitions().add(r);
-        perService.ajouterPer(p);
+    public List<Seance>  afficherSeances (Long id){
+        Repartition r = rechercherRepartition(id);
+       return r.getSeances();
     }
 
-    //ajouter un Enseignant Vacataire dans Repartition
-    public void ajouterEnseignantVacataireARepartition(Repartition r, Vacataire v){
-        r.setEnseignant(v);
-        v.getRepartitions().add(r);
-        vService.ajouter_vacataire(v);
-    }
-
-    */
-    // Service qui affiche tous les enseignants d'une repartion donnee
 }
 
 

@@ -3,7 +3,6 @@ package com.uasz.Gestion_DAOS.RestController.repartition;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uasz.Gestion_DAOS.Modele.maquette.EC;
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
+import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
 import com.uasz.Gestion_DAOS.Modele.repartition.Enseignant;
 import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
-import com.uasz.Gestion_DAOS.Modele.repartition.Vacataire;
+import com.uasz.Gestion_DAOS.Repository.emploi.SeanceRepository;
+import com.uasz.Gestion_DAOS.Repository.maquette.EnseignementRepository;
+import com.uasz.Gestion_DAOS.Repository.repartition.EnseignantRepository;
+import com.uasz.Gestion_DAOS.Repository.repartition.RepartitionRepository;
 import com.uasz.Gestion_DAOS.Service.repartition.RepartitionService;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 
@@ -31,6 +32,18 @@ public class RepartitionRestController {
 
     @Autowired
     private RepartitionService rService;
+
+    @Autowired
+    private EnseignementRepository eRepository;
+
+    @Autowired
+    private EnseignantRepository enseignantRepository;
+
+    @Autowired
+    private SeanceRepository sRepository;
+
+    @Autowired
+    private RepartitionRepository repository;
 
     @GetMapping
     private List<Repartition> lister_repartition(){
@@ -57,13 +70,32 @@ public class RepartitionRestController {
         rService.supprimer_repartition(id);
     }
 
-    /*@PostMapping("/{id}/vacataires")
-    @ResponseStatus(HttpStatus.OK)
-    public Enseignant ajouter_vacataire_repartition(@PathVariable("id") Long id, @RequestBody Vacataire v) {
+
+    @PutMapping(path = "{id}/enseignements/{idEnseignement}")
+    public Repartition assigner_Enseignement(@PathVariable Long id,@PathVariable Long idEnseignement){
+        Enseignement e = eRepository.findById(idEnseignement).get();
         Repartition r = rService.rechercherRepartition(id);
-        rService.ajouterEnseignantVacataireARepartition(r, v);
-        return v;
+        r.setEnseignement(e);
+        eRepository.save(e);
+        return repository.save(r);
     }
-    */
-    
+
+    @PutMapping(path = "{id}/enseignants/{idEnseignant}")
+    public Repartition assigner_Enseignant(@PathVariable Long id,@PathVariable Long idEnseignant){
+        Enseignant e = enseignantRepository.findById(idEnseignant).get();
+        Repartition r = rService.rechercherRepartition(id);
+        r.setEnseignant(e);
+        enseignantRepository.save(e);
+        return repository.save(r);
+    }
+
+    @PutMapping(path = "{id}/seances/{idSeance}")
+    public Repartition assigner_Seance(@PathVariable Long id,@PathVariable Long idSeance){
+        Seance s = sRepository.findById(idSeance).get();
+        Repartition r = rService.rechercherRepartition(id);
+        s.setRepartition(r);
+        sRepository.save(s);
+        return repository.save(r);
+    }
+
 }

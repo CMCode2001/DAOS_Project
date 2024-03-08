@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
+import com.uasz.Gestion_DAOS.Modele.maquette.Groupe;
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
+import com.uasz.Gestion_DAOS.Repository.maquette.EnseignementRepository;
+import com.uasz.Gestion_DAOS.Repository.repartition.RepartitionRepository;
 import com.uasz.Gestion_DAOS.Service.maquette.EnseignementService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -22,6 +26,12 @@ import com.uasz.Gestion_DAOS.Service.maquette.EnseignementService;
 public class EnseignementRestController {
     @Autowired
     private EnseignementService eService;
+
+    @Autowired
+    private RepartitionRepository repository;
+
+    @Autowired
+    private EnseignementRepository eRepository;
 
     @GetMapping
     public List<Enseignement> lister_enseignement(){
@@ -46,6 +56,20 @@ public class EnseignementRestController {
     @DeleteMapping(path = "/{id}")
     public void supprimer_enseignement(@PathVariable Long id ){
         eService.supprimer_enseignement(id);
+    }
+
+    @PutMapping(path = "{id}/repartitions/{idRepartition}")
+    public Enseignement assigner_Repartition(@PathVariable Long id,@PathVariable Long idRepartition){
+        Repartition r = repository.findById(idRepartition).get();
+        Enseignement e = eService.rechercherUneEnseignement(id);
+        r.setEnseignement(e);
+        repository.save(r);
+        return eRepository.save(e);
+    }
+
+    @GetMapping("/{id}/repartitions")
+    public List<Repartition> afficherLesRepartitions(@PathVariable("id") Long id) {
+       return eService.afficherRepartitions(id);
     }
     
 }
