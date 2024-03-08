@@ -29,7 +29,7 @@ public class Module {
     private Long idModule;
     private String libelleModule;
     private String coursModule;
-    private int dureeModule;
+    private int dureeModule, coefficientModule;
     private String objectifsModule, descriptionModule;
     @Temporal(TemporalType.DATE)
     private Date dateCreationModule;

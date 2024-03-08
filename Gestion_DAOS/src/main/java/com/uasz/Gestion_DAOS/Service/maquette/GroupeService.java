@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
+import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
 import com.uasz.Gestion_DAOS.Modele.maquette.Groupe;
 import com.uasz.Gestion_DAOS.Repository.maquette.GroupeRepository;
 
@@ -57,5 +59,10 @@ public class GroupeService {
 
     public void supprimer_groupe(Long id){
         gRepository.deleteById(id);
+    }
+
+    public List<Enseignement> afficherEnseignements(Long id){
+        Groupe g = rechercherUneGroupe(id);
+        return g.getEnseignements();
     }
 }

@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
+import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
+import com.uasz.Gestion_DAOS.Modele.maquette.Groupe;
+import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Repository.maquette.ClasseRepository;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +20,9 @@ import lombok.AllArgsConstructor;
 public class ClasseService {
     @Autowired
     private ClasseRepository cRepository;
+
+    @Autowired
+    private GroupeService gService;
 
     public void ajouterClasse(Classe c) {
         c.setDateCreationClasse(new Date(System.currentTimeMillis()));
@@ -56,5 +63,22 @@ public class ClasseService {
     public void supprimer_classe(Long id){
         cRepository.deleteById(id);
     }
+
+    public List<Groupe> afficherGroupes(Long id){
+        Classe c = rechercherUneClasse(id);
+        return c.getGroupes();
+    }
+
+    public List<Enseignement> afficherEnseignements(Long id){
+        Classe c = rechercherUneClasse(id);
+        return c.getEnseignements();
+    }
+
+    public void ajouterGroupeDansClasse(Classe c, Groupe g) {
+        c.getGroupes().add(g);
+        g.setClasse(c); 
+        gService.ajouterGroupe(g);
+    }
+
     
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.EC;
+import com.uasz.Gestion_DAOS.Modele.maquette.Module;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Service.maquette.UEService;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,10 +60,6 @@ public class UERestController {
         return ueService.afficherLesECs(ue);
     }*/
 
-    @GetMapping(path = "/{id}/modules")
-    public List<Module> afficher_ue_modules(UE ue) {
-        return ueService.afficherModulesUE(ue);
-    }
     
 
     @PostMapping("/{id}/ecs")
@@ -77,5 +74,20 @@ public class UERestController {
     public List<EC> afficherLesECs(@PathVariable("id") Long id) {
        return ueService.afficherLesECs(id);
     }
+
+    @PostMapping("/{id}/modules")
+    @ResponseStatus(HttpStatus.OK)
+    public Module ajouterModuledansUE(@PathVariable("id") Long id, @RequestBody Module m) {
+        UE ue = ueService.rechercherUE(id); 
+        ueService.ajouterModuleDansUE(m, ue);
+        return m;
+    }
+
+    @GetMapping("/{id}/modules")
+    public List<Module> afficherLesModules(@PathVariable("id") Long id) {
+       return ueService.afficherModules(id);
+    }
+   
+    
 
 }

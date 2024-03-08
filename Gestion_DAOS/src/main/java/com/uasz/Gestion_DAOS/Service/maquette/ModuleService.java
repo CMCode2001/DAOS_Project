@@ -2,6 +2,7 @@ package com.uasz.Gestion_DAOS.Service.maquette;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,5 +59,9 @@ public class ModuleService {
 
     public void supprimer_module(Long id){
         mRepository.deleteById(id);
+    }
+
+    public Optional<Module> rechercherModuleParLibelle(String libelle){
+        return mRepository.findByLibelleModule(libelle);
     }
 }

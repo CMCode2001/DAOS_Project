@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
+import com.uasz.Gestion_DAOS.Modele.maquette.Groupe;
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
 import com.uasz.Gestion_DAOS.Repository.maquette.EnseignementRepository;
 
 import jakarta.transaction.Transactional;
@@ -35,7 +37,7 @@ public class EnseignementService {
     public Enseignement modifierEnseignement(Enseignement ens){
         Enseignement e = rechercherUneEnseignement(ens.getIdEnseignement());
         e.setObjectifsEnseignement(ens.getObjectifsEnseignement());
-        e.setDescriptionEnseignements(ens.getDescriptionEnseignements());
+        e.setDescriptionEnseignement(ens.getDescriptionEnseignement());
         return eRepository.save(e);
     }
 
@@ -55,6 +57,11 @@ public class EnseignementService {
 
     public void supprimer_enseignement(Long id){
         eRepository.deleteById(id);
+    }
+
+    public List<Repartition> afficherRepartitions(Long id){
+        Enseignement e = rechercherUneEnseignement(id);
+        return e.getRepartitions();
     }
 
 }

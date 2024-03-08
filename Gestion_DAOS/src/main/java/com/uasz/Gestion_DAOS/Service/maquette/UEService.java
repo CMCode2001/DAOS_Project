@@ -10,6 +10,7 @@ import com.uasz.Gestion_DAOS.Modele.maquette.EC;
 import com.uasz.Gestion_DAOS.Modele.maquette.UE;
 import com.uasz.Gestion_DAOS.Repository.maquette.ECRepository;
 import com.uasz.Gestion_DAOS.Repository.maquette.UERepository;
+import com.uasz.Gestion_DAOS.Modele.maquette.Module;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,8 @@ public class UEService {
 
     @Autowired
     private ECService ecService;
+
+    @Autowired ModuleService mService;
 
     public void ajouterUE(UE ue){
         UE savedUE = ueRepository.save(ue);
@@ -78,9 +81,6 @@ public class UEService {
         return ueRepository.save(savedUE);
     }
 
-    public List<Module> afficherModulesUE(UE ue){
-        return ueRepository.findByUEModules(ue);
-    }
 
 
     public void ajouterECdansUE(EC ec, UE ue) {
@@ -88,4 +88,16 @@ public class UEService {
         ec.setUe(ue); 
         ecService.ajouterEC(ec);
     }
+
+    public void ajouterModuleDansUE(Module module, UE ue) {
+        ue.getModules().add(module); 
+        module.setUe(ue); 
+        mService.ajouterModule(module);
+    }
+    
+    public List<Module> afficherModules(Long id){
+        UE ue = rechercherUE(id);
+        return ue.getModules();
+    }
+
 }
