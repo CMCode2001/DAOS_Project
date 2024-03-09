@@ -85,6 +85,7 @@ public class SeanceRestController {
         return seanceService.salle_assigner(id);
     }
 
+
     
     @PostMapping("/{id}/deroulement")
     @ResponseStatus(HttpStatus.OK)
@@ -93,5 +94,11 @@ public class SeanceRestController {
         seanceService.ajouter_Deroulement(d, s);
         return d;
     }
+    @GetMapping("/{id}/deroulement")
+    public Deroulement getDeroulementBySeanceId(@PathVariable Long id) {
+        Seance seance = seanceService.recherche_Seance(id);
+        return seance.getDeroulement();
+    }
+
 
 }

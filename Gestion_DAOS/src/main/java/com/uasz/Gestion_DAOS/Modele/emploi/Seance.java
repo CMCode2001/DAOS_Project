@@ -45,6 +45,7 @@ public class Seance {
     /**
      * Representation de la relation Seance-Deroulement
      */
+    @JsonIgnore
     @OneToOne(mappedBy = "seance")
     private Deroulement deroulement;
 
