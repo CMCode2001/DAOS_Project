@@ -38,7 +38,7 @@ public class Formation {
     /**
      * Representation de la relation Maquette-Formation
      */
-    @OneToOne(mappedBy = "formation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "formation", cascade = CascadeType.ALL)
     private Maquette maquette;
 
     /**

@@ -7,6 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
+import com.uasz.Gestion_DAOS.Modele.maquette.EC;
+import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
 import com.uasz.Gestion_DAOS.Modele.maquette.Module;
 import com.uasz.Gestion_DAOS.Repository.maquette.ModuleRepository;
 
@@ -63,5 +66,11 @@ public class ModuleService {
 
     public Optional<Module> rechercherModuleParLibelle(String libelle){
         return mRepository.findByLibelleModule(libelle);
+    }
+
+    public List<Enseignement> afficherEnseignements(Long id){
+        Module m = rechercherUnModule(id);
+        return m.getEnseignements();
+        
     }
 }

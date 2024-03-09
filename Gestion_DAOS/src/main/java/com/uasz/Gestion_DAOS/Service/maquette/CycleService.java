@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Cycle;
+import com.uasz.Gestion_DAOS.Modele.maquette.Niveau;
 import com.uasz.Gestion_DAOS.Repository.maquette.CycleRepository;
 
 import jakarta.transaction.Transactional;
@@ -54,6 +55,11 @@ public class CycleService {
 
     public void supprimer_cycle(Long id){
         cRepository.deleteById(id);
+    }
+
+    public List<Niveau> afiicherNiveaux(Long id){
+        Cycle c = rechercherUnCycle(id);
+        return c.getNiveaux();
     }
 
 }
