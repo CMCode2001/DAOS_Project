@@ -31,7 +31,7 @@ public class Niveau {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idNiveau;
-    private NiveauConst libelleNiveau;
+    private String libelleNiveau;
     private String descriptionNiveau;
     @Temporal(TemporalType.DATE)
     private Date dateCreationNiveau;

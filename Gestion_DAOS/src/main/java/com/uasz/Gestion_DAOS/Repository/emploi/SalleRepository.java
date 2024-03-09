@@ -6,5 +6,4 @@ import com.uasz.Gestion_DAOS.Modele.emploi.Salle;
 
 public interface SalleRepository extends JpaRepository<Salle, Long>{
 
-    Salle save(Long idSalle);
 }

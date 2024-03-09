@@ -2,12 +2,15 @@ package com.uasz.Gestion_DAOS.RestController.emploi;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Batiment;
 import com.uasz.Gestion_DAOS.Modele.emploi.Salle;
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Service.emploi.SalleService;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 /**
@@ -41,22 +45,36 @@ public class SalleRestController {
 
     //POST
     @PostMapping
-    public Salle ajouter_Salle(@RequestBody Salle Salle){
-        return salleService.ajouter_Salle(Salle);
+    public Salle ajouter_Salle(@RequestBody Salle salle){
+        return salleService.ajouter_Salle(salle);
     }
 
 
-    //PUT
-     @PutMapping(path = "/{id}")
-    public Salle modifier_Salle(@RequestBody Salle Salle, @PathVariable Long idBat){
-        return salleService.modifier_Salle(Salle,idBat);
+
+    @PutMapping(path = "/{id}")
+    public Salle modifier_Salle(@RequestBody Salle salle, @PathVariable Long id){
+        return salleService.modifier_Salle(salle, id); // Pass the correct parameters
     }
+
 
 
     //DELETE
      @DeleteMapping(path = "/{id}")
     public void supprimer_Salle(@PathVariable Long id){
         salleService.supprimer_Salle(id);
+    }
+
+    @PostMapping("/{id}/seances")
+    @ResponseStatus(HttpStatus.OK)
+    public Seance ajouterSeanceDansSalle (@PathVariable("id") Long id, @RequestBody Seance s) {
+        Salle b = salleService.recherche_Salle(id);
+        salleService.ajouterSeanceDansSalle(b, s);
+        return s;
+    }
+
+    @GetMapping("/{id}/seances")
+    public List<Seance> afficherSeances(@PathVariable("id") Long id) {
+       return salleService.afficherLesSeances(id);
     }
     
 }

@@ -30,9 +30,9 @@ public class Enseignement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEnseignement;
-    private int libelleEnseignement;
+    private String libelleEnseignement;
     private String objectifsEnseignement;
-    private String descriptionEnseignements;
+    private String descriptionEnseignement;
     @Temporal(TemporalType.DATE)
     private Date dateCreationEnseignement;
 

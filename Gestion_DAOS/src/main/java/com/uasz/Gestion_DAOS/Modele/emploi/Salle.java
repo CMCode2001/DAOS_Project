@@ -25,8 +25,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Getter
-@Setter
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Salle {
     @Id

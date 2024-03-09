@@ -29,7 +29,7 @@ public class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSeance;
-    private Jour jourSeance;
+    private String jourSeance;
     private int dureeSeance;
         private int debutSeance, finSeance, numeroSeance;
     @Temporal(TemporalType.DATE)

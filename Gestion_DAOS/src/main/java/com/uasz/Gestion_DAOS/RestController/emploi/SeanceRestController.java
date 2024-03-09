@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Salle;
 import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
+import com.uasz.Gestion_DAOS.Repository.emploi.SalleRepository;
+import com.uasz.Gestion_DAOS.Repository.emploi.SeanceRepository;
 import com.uasz.Gestion_DAOS.Service.emploi.SeanceService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -23,6 +26,12 @@ import com.uasz.Gestion_DAOS.Service.emploi.SeanceService;
 public class SeanceRestController {
      @Autowired
     private SeanceService seanceService;
+
+    @Autowired 
+    private SalleRepository sRepository;
+
+    @Autowired
+    private SeanceRepository seanceRepository;
 
     //GET
     @GetMapping 
@@ -45,8 +54,8 @@ public class SeanceRestController {
 
     //PUT
      @PutMapping(path = "/{id}")
-    public Seance modifier_Seance(@RequestBody Seance seance, @PathVariable Long idBat){
-        return seanceService.modifier_Seance(seance,idBat);
+    public Seance modifier_Seance(@RequestBody Seance seance, @PathVariable Long id){
+        return seanceService.modifier_Seance(seance,id);
     }
 
 
@@ -55,4 +64,21 @@ public class SeanceRestController {
     public void supprimer_Seance(@PathVariable Long id){
         seanceService.supprimer_Seance(id);
     }
+
+    @PutMapping(path = "{id}/salles/{idSalle}")
+    public Seance ajouter_Salle_Seance(@PathVariable Long id,@PathVariable Long idSalle){
+        Salle s = sRepository.findById(idSalle).get();
+        Seance se = seanceService.recherche_Seance(id);
+        se.setSalle(s);
+       sRepository.save(s);
+
+        return seanceRepository.save(se);
+       
+    }
+
+    @GetMapping(path = "{id}/salles")
+    public Salle salleAssigner(@PathVariable Long id){
+        return seanceService.salle_assigner(id);
+    }
+
 }
