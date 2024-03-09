@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
 import com.uasz.Gestion_DAOS.Modele.maquette.Formation;
+import com.uasz.Gestion_DAOS.Modele.maquette.Maquette;
 import com.uasz.Gestion_DAOS.Repository.maquette.FormationRepository;
 
 import jakarta.transaction.Transactional;
@@ -56,4 +58,14 @@ public class FormationService {
     public void supprimer_formation(Long id){
         fRepository.deleteById(id);
     }
+
+    public List<Classe> afficherClasses(Long id){
+        Formation f = rechercherUneFormation(id);
+        return f.getClasses();
+    } 
+
+    public Maquette afficherMaquette(Long id){
+        Formation f = rechercherUneFormation(id);
+        return f.getMaquette();
+    } 
 }

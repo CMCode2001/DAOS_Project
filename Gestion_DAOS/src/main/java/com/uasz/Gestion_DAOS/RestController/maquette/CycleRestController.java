@@ -14,7 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Cycle;
+import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
+import com.uasz.Gestion_DAOS.Modele.maquette.Niveau;
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
+import com.uasz.Gestion_DAOS.Repository.maquette.CycleRepository;
+import com.uasz.Gestion_DAOS.Repository.maquette.NiveauRepository;
 import com.uasz.Gestion_DAOS.Service.maquette.CycleService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
 @RestController
@@ -22,6 +29,12 @@ import com.uasz.Gestion_DAOS.Service.maquette.CycleService;
 public class CycleRestController {
     @Autowired
     private CycleService cService;
+
+    @Autowired
+    private CycleRepository cRepository;
+
+    @Autowired
+    private NiveauRepository nRepository;
 
     @GetMapping
     private List<Cycle> lister_cycle(){
@@ -47,4 +60,19 @@ public class CycleRestController {
     public void supprimer_cycle(@PathVariable Long id){
         cService.supprimer_cycle(id);
     }
+
+    @PutMapping(path = "{id}/niveau/{idNiveau}")
+    public Cycle assigner_Repartition(@PathVariable Long id,@PathVariable Long idNiveau){
+        Niveau n = nRepository.findById(idNiveau).get();
+        Cycle c = cService.rechercherUnCycle(id);
+        n.setCycle(c);
+        nRepository.save(n);
+        return cRepository.save(c);
+    }
+
+    @GetMapping(path = "{id}/niveau")
+    public List<Niveau> afficherNiveaux(@PathVariable Long id) {
+        return cService.afiicherNiveaux(id);
+    }
+    
 }

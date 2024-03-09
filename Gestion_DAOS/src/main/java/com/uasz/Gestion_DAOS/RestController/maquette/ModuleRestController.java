@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
 import com.uasz.Gestion_DAOS.Modele.maquette.EC;
+import com.uasz.Gestion_DAOS.Modele.maquette.Enseignement;
 import com.uasz.Gestion_DAOS.Modele.maquette.Module;
+import com.uasz.Gestion_DAOS.Repository.maquette.EnseignementRepository;
+import com.uasz.Gestion_DAOS.Repository.maquette.ModuleRepository;
 import com.uasz.Gestion_DAOS.Service.maquette.ECService;
 import com.uasz.Gestion_DAOS.Service.maquette.ModuleService;
 
@@ -24,8 +28,13 @@ import com.uasz.Gestion_DAOS.Service.maquette.ModuleService;
 public class ModuleRestController {
     @Autowired
     private ModuleService moduleService;
+ 
+    @Autowired
+    private EnseignementRepository eRepository;
 
-    @Autowired ECService ecService;
+    @Autowired
+    private ModuleRepository moduleRepository;
+
 
     @GetMapping
     public List<Module> lister_module(){
@@ -52,10 +61,17 @@ public class ModuleRestController {
         moduleService.supprimer_module(id);
     }
     
-    /*@PostMapping(path="/{id}")
-    public Module ajouter_module(@RequestBody Module m, @PathVariable Long id){
-        EC ec = ecService.rechercherEc(id);
-        m.setEc(ec);
-        return moduleService.ajouter_module(m);
-    }*/
+     @PutMapping(path = "{id}/enseignements/{idEnseignement}")
+    public Module assigner_Enseignement(@PathVariable Long id,@PathVariable Long idEnseignement){
+        Enseignement e = eRepository.findById(idEnseignement).get();
+        Module m = moduleService.rechercherUnModule(id);
+        e.setModule(m);
+        eRepository.save(e);
+        return moduleRepository.save(m);
+    }
+
+    @GetMapping("/{id}/enseignements")
+    public List<Enseignement> afficherLesEnseignements(@PathVariable("id") Long id) {
+       return moduleService.afficherEnseignements(id);
+    }
 }
