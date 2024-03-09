@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Filiere;
+import com.uasz.Gestion_DAOS.Modele.maquette.Formation;
 import com.uasz.Gestion_DAOS.Modele.maquette.Niveau;
+import com.uasz.Gestion_DAOS.Repository.maquette.FormationRepository;
+import com.uasz.Gestion_DAOS.Repository.maquette.NiveauRepository;
 import com.uasz.Gestion_DAOS.Service.maquette.NiveauService;
 
 @CrossOrigin(origins = "*", allowedHeaders="*")
@@ -22,6 +26,12 @@ import com.uasz.Gestion_DAOS.Service.maquette.NiveauService;
 public class NiveauRestController {
     @Autowired
     private NiveauService niveauService;
+
+    @Autowired
+    private FormationRepository fRepository;
+    
+    @Autowired
+    private NiveauRepository nRepository;
 
     @GetMapping
     private List<Niveau> lister_niveau(){
@@ -47,4 +57,19 @@ public class NiveauRestController {
     public void supprimer_niveau(@PathVariable Long id){
         niveauService.supprimer_niveau(id);
     }
+
+    @PutMapping(path = "{id}/formations/{idFormation}")
+    public Niveau assignerFormations(@PathVariable Long id,@PathVariable Long idFormation){
+        Formation f = fRepository.findById(idFormation).get();
+        Niveau n = niveauService.rechercherUnNiveau(id);
+        f.setNiveau(n);;
+        fRepository.save(f);
+        return nRepository.save(n);
+    }
+
+    @GetMapping(path = "{id}/formations")
+    public List<Formation> afficherFormations(@PathVariable Long id) {
+        return niveauService.afficherFormations(id);
+    }
+    
 }
