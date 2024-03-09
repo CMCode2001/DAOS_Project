@@ -1,7 +1,6 @@
 package com.uasz.Gestion_DAOS.RestController.repartition;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,6 +59,8 @@ public class RepartitionRestController {
         return rService.ajouter_repartition(c);
     }
 
+
+
     @PutMapping(path = "/{id}")
     public Repartition modifier_repartition(@PathVariable Long id, @RequestBody Repartition c){
         return rService.modifier_repartition(c, id);
@@ -96,6 +97,11 @@ public class RepartitionRestController {
         s.setRepartition(r);
         sRepository.save(s);
         return repository.save(r);
+    }
+
+    @GetMapping(path = "{id}/seances")
+    public List<Seance> afficherSeances(Long id){
+        return  rService.afficherSeances(id);
     }
 
 }

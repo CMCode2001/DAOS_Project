@@ -31,7 +31,7 @@ public class Seance {
     private Long idSeance;
     private String jourSeance;
     private int dureeSeance;
-    private int debutSeance, finSeance, numeroSeance;
+        private int debutSeance, finSeance, numeroSeance;
     @Temporal(TemporalType.DATE)
     private Date dateCreationSeance;
     /**
@@ -45,6 +45,7 @@ public class Seance {
     /**
      * Representation de la relation Seance-Deroulement
      */
+    @JsonIgnore
     @OneToOne(mappedBy = "seance")
     private Deroulement deroulement;
 

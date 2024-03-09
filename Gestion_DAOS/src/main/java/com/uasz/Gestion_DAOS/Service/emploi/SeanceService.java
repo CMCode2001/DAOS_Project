@@ -63,6 +63,8 @@ public class SeanceService {
 
     public void ajouter_Deroulement(Deroulement d, Seance s){
         s.setDeroulement(d);
+        d.setSeance(s);
         dService.ajouter_Deroulement(d);
+        seanceRepository.save(s);
     }
 }
