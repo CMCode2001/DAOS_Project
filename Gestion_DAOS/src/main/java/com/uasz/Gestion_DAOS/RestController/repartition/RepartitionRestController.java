@@ -2,8 +2,10 @@ package com.uasz.Gestion_DAOS.RestController.repartition;
 
 import java.util.List;
 
+import com.uasz.Gestion_DAOS.Modele.repartition.PER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +48,8 @@ public class RepartitionRestController {
     public Repartition ajouter_repartition(@RequestBody Repartition c){
         return rService.ajouter_repartition(c);
     }
+
+
 
     @PutMapping(path = "/{id}")
     public Repartition modifier_repartition(@PathVariable Long id, @RequestBody Repartition c){
