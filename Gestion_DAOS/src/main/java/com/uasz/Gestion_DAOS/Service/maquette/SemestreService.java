@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Classe;
+import com.uasz.Gestion_DAOS.Modele.maquette.Module;
 import com.uasz.Gestion_DAOS.Modele.maquette.Semestre;
 import com.uasz.Gestion_DAOS.Repository.maquette.SemestreRepository;
 
@@ -56,4 +58,15 @@ public class SemestreService {
     public void supprimer_semestre( Long id){
         sRepository.deleteById(id);
     }
+
+    public List<Classe> afficherClasses(Long id){
+        Semestre s = rechercherUneSemestre(id);
+        return s.getClasses();
+    } 
+
+    public List<Module> afficherModules(Long id){
+        Semestre s = rechercherUneSemestre(id);
+        return s.getModules();
+    }
 }
+

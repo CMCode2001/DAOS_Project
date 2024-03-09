@@ -43,6 +43,6 @@ public class Semestre{
      */
     @JsonIgnore
     @OneToMany(mappedBy = "semestre")
-    private List<Module> module;
+    private List<Module> modules;
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Emploi;
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Repository.emploi.EmploiRepository;
 
 import jakarta.transaction.Transactional;
@@ -45,5 +46,10 @@ public class EmploiService {
     //LISTER TOUT ATTRIBUT
     public List<Emploi> listerToutEmploi() {
        return repository.findAll();
+    }
+
+    public List<Seance> afficherSeances(Long id){
+        Emploi e = recherche_emploi(id);
+        return e.getSeances();
     }
 }

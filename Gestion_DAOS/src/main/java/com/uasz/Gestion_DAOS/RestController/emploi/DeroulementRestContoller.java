@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Deroulement;
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
+import com.uasz.Gestion_DAOS.Modele.maquette.Formation;
+import com.uasz.Gestion_DAOS.Modele.maquette.Maquette;
 import com.uasz.Gestion_DAOS.Repository.emploi.DeroulementRepository;
 import com.uasz.Gestion_DAOS.Service.emploi.DeroulementService;
 
@@ -58,6 +61,9 @@ public class DeroulementRestContoller {
         deroulementService.supprimer_Deroulement(id);
     }
 
-
+    @GetMapping(path = "/{id}/seance")
+    public Seance afficherSeance(Long id){
+        return deroulementService.afficherSeance(id);
+    }
     
 }

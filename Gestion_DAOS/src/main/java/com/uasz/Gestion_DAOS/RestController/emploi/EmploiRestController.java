@@ -3,6 +3,10 @@ package com.uasz.Gestion_DAOS.RestController.emploi;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uasz.Gestion_DAOS.Modele.emploi.Emploi;
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
+import com.uasz.Gestion_DAOS.Modele.repartition.Repartition;
+import com.uasz.Gestion_DAOS.Repository.emploi.EmploiRepository;
+import com.uasz.Gestion_DAOS.Repository.emploi.SeanceRepository;
 import com.uasz.Gestion_DAOS.Service.emploi.EmploiService;
 
 import java.util.List;
@@ -27,6 +31,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EmploiRestController {
     @Autowired
     private EmploiService service;
+
+    @Autowired
+    private SeanceRepository sRepository;
+
+    @Autowired
+    private EmploiRepository eRepository;
 
     //GET
     @GetMapping 
@@ -57,6 +67,20 @@ public class EmploiRestController {
      @DeleteMapping(path = "/{id}")
     public void supprimer_emploi(@PathVariable Long id){
         service.supprimer_emploi(id);
+    }
+    
+    @PutMapping(path = "{id}/seances/{idSeance}")
+    public Emploi assigner_Seance(@PathVariable Long id,@PathVariable Long idSeance){
+        Seance s = sRepository.findById(idSeance).get();
+        Emploi e = service.recherche_emploi(id);
+        s.setEmploi(e);;
+        sRepository.save(s);
+        return eRepository.save(e);
+    }
+
+    @GetMapping (path = "{id}/seances")
+    public List<Seance> afficherSeances(@PathVariable Long id){
+        return service.afficherSeances(id);
     }
     
 }

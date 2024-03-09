@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.emploi.Deroulement;
 import com.uasz.Gestion_DAOS.Modele.emploi.Salle;
 import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Repository.emploi.SeanceRepository;
@@ -20,6 +21,9 @@ import lombok.Data;
 public class SeanceService {
      @Autowired
     private SeanceRepository seanceRepository ;
+
+    @Autowired
+    private DeroulementService dService;
 
     //AJOUTER 
     public Seance ajouter_Seance(Seance seance){
@@ -55,5 +59,10 @@ public class SeanceService {
     public Salle salle_assigner(Long id){
         Seance s = recherche_Seance(id);
         return s.getSalle();
+    }
+
+    public void ajouter_Deroulement(Deroulement d, Seance s){
+        s.setDeroulement(d);
+        dService.ajouter_Deroulement(d);
     }
 }
