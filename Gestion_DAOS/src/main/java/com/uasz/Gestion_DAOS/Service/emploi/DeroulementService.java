@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.uasz.Gestion_DAOS.Modele.emploi.Deroulement;
+import com.uasz.Gestion_DAOS.Modele.emploi.Seance;
 import com.uasz.Gestion_DAOS.Repository.emploi.DeroulementRepository;
 
 import jakarta.transaction.Transactional;
@@ -44,5 +45,10 @@ public class DeroulementService {
     //LISTER TOUT ATTRIBUT
     public List<Deroulement> listerToutDeroulement() {
        return deroulementRepository.findAll();
+    }
+
+    public Seance afficherSeance(Long id){
+        Deroulement d = recherche_Deroulement(id);
+        return d.getSeance();
     }
 }

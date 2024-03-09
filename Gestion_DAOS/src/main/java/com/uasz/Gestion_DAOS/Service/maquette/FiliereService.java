@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uasz.Gestion_DAOS.Modele.maquette.Filiere;
+import com.uasz.Gestion_DAOS.Modele.maquette.Formation;
 import com.uasz.Gestion_DAOS.Repository.maquette.FiliereRepository;
 
 import jakarta.transaction.Transactional;
@@ -55,6 +56,11 @@ public class FiliereService {
 
     public void supprimer_filiere(Long id){
         fRepository.deleteById(id);
+    }
+
+    public List<Formation> afficheFormations(Long id){
+        Filiere f = rechercherUneFiliere(id);
+        return f.getFormations();
     }
 
 }
