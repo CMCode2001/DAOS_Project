@@ -58,6 +58,7 @@ public class Enseignement {
     @JoinColumn(name = "module")
     private Module module;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "enseignement")
     private List<Repartition> repartitions;
 
