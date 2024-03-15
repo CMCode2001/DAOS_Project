@@ -31,13 +31,13 @@ public class Seance {
     private Long idSeance;
     private String jourSeance;
     private int dureeSeance;
-        private int debutSeance, finSeance, numeroSeance;
+    private int debutSeance, finSeance, numeroSeance;
     @Temporal(TemporalType.DATE)
     private Date dateCreationSeance;
     /**
      * Representation de la relation Salle-Seance
      */
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "salle")
     private Salle salle;
@@ -45,19 +45,19 @@ public class Seance {
     /**
      * Representation de la relation Seance-Deroulement
      */
-    @JsonIgnore
+    
     @OneToOne(mappedBy = "seance")
     private Deroulement deroulement;
 
     /**
      * Representation de la relation Emploi-Seance
      */
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "emploi")
     private Emploi emploi;
 
-    @JsonIgnore
+    
     @ManyToOne
     @JoinColumn(name = "repartition")
     private Repartition repartition;

@@ -3,6 +3,7 @@ package com.uasz.Gestion_DAOS.Modele.emploi;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -37,7 +38,8 @@ public class Emploi {
     /**
      * Representation de relation Emploi-seance
     */
-    @OneToMany(mappedBy = "emploi", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "emploi")
     private List<Seance> seances;
     
 }

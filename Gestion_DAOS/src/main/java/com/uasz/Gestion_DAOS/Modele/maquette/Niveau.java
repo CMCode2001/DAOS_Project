@@ -39,7 +39,6 @@ public class Niveau {
     /**
      * Representation de la relation Niveau-Cycle;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cycle")
     private Cycle cycle;

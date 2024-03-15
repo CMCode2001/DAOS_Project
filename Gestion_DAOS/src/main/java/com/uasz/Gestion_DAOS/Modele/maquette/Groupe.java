@@ -38,7 +38,6 @@ public class Groupe {
     /**
      * Representation de la relation classe-Groupe;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "classe")
     private Classe classe;  

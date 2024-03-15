@@ -39,6 +39,6 @@ public class Batiment {
      * Representation de la relation Batiment-Salle
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "batiment", cascade = CascadeType.ALL)
-    private List<Salle> salles = new ArrayList<>();
+    @OneToMany(mappedBy = "batiment")
+    private List<Salle> salles;
 }

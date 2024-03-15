@@ -37,7 +37,6 @@ public class Module {
     /**
     * Representation de la relation Semestre-Module;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "semestre")
     private Semestre semestre;
@@ -52,7 +51,6 @@ public class Module {
     /**
      * Representation de la relation Maquette-Module;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "maquette")
     private Maquette maquette;
@@ -60,7 +58,6 @@ public class Module {
     /**
      * Representation de la relation UE-Module;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ue")
     private UE ue;
@@ -68,7 +65,6 @@ public class Module {
     /**
      * Representation de la relation Module-EC;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="ec")
     private EC ec;

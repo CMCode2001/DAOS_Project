@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Cycle;
 import com.uasz.Gestion_DAOS.Modele.maquette.Filiere;
 import com.uasz.Gestion_DAOS.Modele.maquette.Formation;
 import com.uasz.Gestion_DAOS.Modele.maquette.Niveau;
@@ -72,4 +73,8 @@ public class NiveauRestController {
         return niveauService.afficherFormations(id);
     }
     
+     @GetMapping(path = "/{id}/cycle")
+    public Cycle afficherCycle(@PathVariable Long id){
+        return niveauService.afficherCycle(id);
+    }
 }

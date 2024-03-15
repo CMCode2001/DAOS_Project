@@ -37,6 +37,7 @@ public class Maquette {
     /**
      * Representation de la relation Maquette-Formation
      */
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "formation")
     private Formation formation;
