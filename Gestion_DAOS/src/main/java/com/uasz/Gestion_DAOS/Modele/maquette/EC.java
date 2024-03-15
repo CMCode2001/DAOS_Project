@@ -40,7 +40,6 @@ public class EC {
     /**
      * Representation de la relation entre EC-UE
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ue")
     private UE ue;

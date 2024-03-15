@@ -37,12 +37,10 @@ public class Repartition {
     private Date dateCreationRepartition;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "enseignement")
     private Enseignement enseignement;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "enseignant")
     private Enseignant enseignant;
     

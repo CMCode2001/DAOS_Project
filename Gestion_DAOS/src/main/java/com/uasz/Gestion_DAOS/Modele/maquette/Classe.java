@@ -54,14 +54,12 @@ public class Classe {
      * Representation de la relation classe-Semestre;
      */
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "semestre")
     private Semestre semestre;
 
     /**
      * Representation de la relation Classe-Formation;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="formation")
     private Formation formation;

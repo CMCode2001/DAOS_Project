@@ -38,22 +38,20 @@ public class Formation {
     /**
      * Representation de la relation Maquette-Formation
      */
-    @OneToOne(mappedBy = "formation", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "formation")
     private Maquette maquette;
 
     /**
     * Representation de la relation Filiere-Formation;
     */
-    @JsonIgnore
-    @ManyToOne
     @JoinColumn(name = "filiere")
+    @ManyToOne
     private Filiere filiere;
     /** 
     * Representation de la relation Formation-Niveau;
     */
-    @JsonIgnore
-    @ManyToOne
     @JoinColumn(name= "niveau")
+    @ManyToOne
     private Niveau niveau;
 
     /**

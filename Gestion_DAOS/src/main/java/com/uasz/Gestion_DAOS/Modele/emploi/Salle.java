@@ -40,7 +40,6 @@ public class Salle {
     /**
      * Representation de la relation entre Batiment-Salle
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "batiment")
     private Batiment batiment;

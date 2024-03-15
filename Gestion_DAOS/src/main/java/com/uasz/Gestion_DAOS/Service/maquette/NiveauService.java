@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uasz.Gestion_DAOS.Modele.maquette.Cycle;
 import com.uasz.Gestion_DAOS.Modele.maquette.Formation;
 import com.uasz.Gestion_DAOS.Modele.maquette.Niveau;
 import com.uasz.Gestion_DAOS.Repository.maquette.NiveauRepository;
@@ -61,5 +62,10 @@ public class NiveauService {
     public List<Formation> afficherFormations(Long id){
         Niveau n = rechercherUnNiveau(id);
         return n.getFormations();
+    }
+
+    public Cycle afficherCycle(Long id){
+        Niveau n = rechercherUnNiveau(id);
+       return n.getCycle();
     }
 }

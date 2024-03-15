@@ -40,7 +40,6 @@ public class Enseignement {
     /**
      * Representation de la relation classe-Enseignement;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "classe")
     private Classe classe;
@@ -48,7 +47,6 @@ public class Enseignement {
     /**
      * Representation de la relation Groupe-Enseignement;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "groupe")
     private Groupe groupe;
@@ -56,13 +54,11 @@ public class Enseignement {
     /**
      * Representation de la relation Module-Enseignement;
      */
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "module")
     private Module module;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "enseignement", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "enseignement")
     private List<Repartition> repartitions;
 
 }
